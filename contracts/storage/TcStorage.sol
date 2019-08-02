@@ -10,15 +10,9 @@ import "./TcEvents.sol";
 // shared storage
 contract TcStorage is TcObjects, TcEvents, Ownable {
 
-    // example
-    mapping (uint => Something) something;
+    mapping (uint => Isp) isps;
 
-    // A dynamically-sized array of `Proposal` structs.
-    Proposal[] public proposals;
-
-    // This declares a state variable that
-    // stores a `Voter` struct for each possible address.
-    mapping (address => Voter) public voters;
+    mapping (uint => Donor) donors;
 
 }
 
