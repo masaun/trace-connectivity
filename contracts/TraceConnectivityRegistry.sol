@@ -10,8 +10,8 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     uint public donorId;
 
     constructor() public {
-        ispId = 1;     // ISP's ID is started from 1
-        donorId = 1;   // Donor's ID is started from 1
+        ispId = 1;     // ISP's ID is started count from 1
+        donorId = 1;   // Donor's ID is started count from 1
     }
 
 
