@@ -9,11 +9,4 @@ contract TcEvents {
         uint timestamp
     );
 
-
-
-    event SomethingEvent (
-        address indexed addr,
-        uint indexed value
-    );
-
 }
