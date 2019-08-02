@@ -9,13 +9,15 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
 
     constructor() public {}
 
-    function ISPIndex() public returns (bool) {
-                 
+    function IspIndex() public returns (bool) {
+        // [Note]： Don't implementation right now.
+        //return isps.length;
     }
 
 
-    function ISPDetail() public returns (bool) {
-         
+    function IspDetail(uint _id) public view returns (string memory, address) {
+        Isp memory isp = isps[_id];
+        return (isp.name, isp.addr);
     }
 
 
