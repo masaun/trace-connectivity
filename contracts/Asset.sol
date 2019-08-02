@@ -2,10 +2,10 @@ pragma solidity ^0.5.0;
 
 /* @notice Using OpenZeppelin-solidity v2.1.1 */
 import "./openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
-import "./storage/BrStorage.sol";
+import "./storage/TcStorage.sol";
 
 
-contract Asset is ERC721Full, BrStorage {
+contract Asset is ERC721Full, TcStorage {
     constructor(
         string memory name,
         string memory symbol,

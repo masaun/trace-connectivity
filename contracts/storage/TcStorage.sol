@@ -3,12 +3,12 @@ pragma solidity ^0.5.0;
 //import "../openzeppelin-solidity/ReentrancyGuard.sol";
 import "../openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-import "./BrObjects.sol";
-import "./BrEvents.sol";
+import "./TcObjects.sol";
+import "./TcEvents.sol";
 
 
 // shared storage
-contract BrStorage is BrObjects, BrEvents, Ownable {
+contract TcStorage is TcObjects, TcEvents, Ownable {
 
     // example
     mapping (uint => Something) something;

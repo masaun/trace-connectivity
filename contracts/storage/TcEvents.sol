@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 
-contract BrEvents {
+contract TcEvents {
 
     event SomethingEvent (
         address indexed addr,

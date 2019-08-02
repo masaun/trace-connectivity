@@ -1,10 +1,10 @@
 pragma solidity >=0.4.22 <0.6.0;
 
-import "./storage/BrStorage.sol";
-import "./modifiers/BrOwnable.sol";
+import "./storage/TcStorage.sol";
+import "./modifiers/TcOwnable.sol";
 
 
-contract Voting is BrStorage, BrOwnable {
+contract Voting is TcStorage, TcOwnable {
     address public chairperson;
 
 

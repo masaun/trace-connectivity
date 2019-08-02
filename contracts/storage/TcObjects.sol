@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 
-contract BrObjects {
+contract TcObjects {
 
     struct Something {
         // In progress
