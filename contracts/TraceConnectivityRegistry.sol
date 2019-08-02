@@ -9,8 +9,8 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     constructor() public {}
 
 
-    function ISPRegistry() public returns (bool) {
-         
+    function ISPRegistry(uint _id) public returns (bool) {
+        
     }
 
 

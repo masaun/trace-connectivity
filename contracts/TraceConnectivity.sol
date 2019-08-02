@@ -10,7 +10,7 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
     constructor() public {}
 
     function ISPIndex() public returns (bool) {
-         
+                 
     }
 
 

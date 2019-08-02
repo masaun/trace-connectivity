@@ -4,6 +4,7 @@ pragma solidity ^0.5.0;
 contract TcObjects {
 
     struct ISP {
+        string name;
         address addr;
         uint uploadSpeed;
         uint downloadSpeed;
@@ -11,6 +12,7 @@ contract TcObjects {
     }
 
     struct Donor {
+        string name;
         address addr;
         uint donateAmount;
     }
