@@ -19,6 +19,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         isp.addr = _addr;
         isp.timestamp = now;
 
+        emit IspRegistry(isp.name, isp.addr, isp.timestamp);
     }
 
 
