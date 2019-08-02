@@ -6,25 +6,37 @@ import "./modifiers/TcOwnable.sol";
 
 contract TraceConnectivityRegistry is TcStorage, TcOwnable {
 
-    constructor() public {}
+    uint public ispId;
+    uint public donorId;
+
+    constructor() public {
+        ispId = 1;     // ISP's ID is started from 1
+        donorId = 1;   // Donor's ID is started from 1
+    }
+
 
     function ispRegistry(
-        uint _id,
         string memory _name,
         address _addr
     ) public returns (bool)
     {
+        uint _id;
+        _id = ispId;
+
         Isp storage isp = isps[_id];
         isp.name = _name;
         isp.addr = _addr;
         isp.timestamp = now;
 
         emit IspRegistry(isp.name, isp.addr, isp.timestamp);
+
+        ispId++;
+
     }
 
 
     function donorRegistry() public returns (bool) {
-         
+        
     }
 
 }
