@@ -7,8 +7,8 @@ contract TcOwnable is Ownable {
 
     // example
     modifier onlyStakingPerson(uint _time) { 
-        require (now >= _time); 
-        _; 
+        require (now >= _time);
+        _;
     }
     
 }

@@ -10,6 +10,12 @@ import "./TcEvents.sol";
 // shared storage
 contract TcStorage is TcObjects, TcEvents, Ownable {
 
+    mapping (uint => ISP) isps;
+
+    mapping (uint => Donor) donors;
+    
+
+
     // example
     mapping (uint => Something) something;
 
