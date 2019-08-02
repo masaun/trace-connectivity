@@ -2,22 +2,12 @@ pragma solidity >=0.4.22 <0.6.0;
 
 import "./storage/TcStorage.sol";
 import "./modifiers/TcOwnable.sol";
+import "./TraceConnectivityRegistry.sol";
 
 
-contract TraceConnectivity is TcStorage, TcOwnable {
+contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
 
     constructor() public {}
-
-
-    function ISPRegistry() public returns (bool) {
-         
-    }
-
-
-    function DonorRegistry() public returns (bool) {
-         
-    }
-
 
     function ISPIndex() public returns (bool) {
          
