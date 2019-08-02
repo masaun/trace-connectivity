@@ -8,13 +8,21 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
 
     constructor() public {}
 
+    function ispRegistry(
+        uint _id,
+        string memory _name,
+        address _addr
+    ) public returns (bool)
+    {
+        Isp storage isp = isps[_id];
+        isp.name = _name;
+        isp.addr = _addr;
+        isp.timestamp = now;
 
-    function ISPRegistry(uint _id) public returns (bool) {
-        
     }
 
 
-    function DonorRegistry() public returns (bool) {
+    function donorRegistry() public returns (bool) {
          
     }
 
