@@ -1,0 +1,263 @@
+{
+  "contractName": "BrEvents",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "SomethingEvent",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058203cbcb17bfe099739224b5f87e571694a410d89fb4c8324af009ecd3c1dbc7adf0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058203cbcb17bfe099739224b5f87e571694a410d89fb4c8324af009ecd3c1dbc7adf0029",
+  "sourceMap": "26:114:70:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:114:70;;;;;;;",
+  "deployedSourceMap": "26:114:70:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\n\ncontract BrEvents {\n\n    event SomethingEvent (\n        address indexed addr,\n        uint indexed value\n    );\n\n}\n",
+  "sourcePath": "/Users/unomasanori/projects/DEMO_MVP/trace-connectivity/contracts/storage/BrEvents.sol",
+  "ast": {
+    "absolutePath": "/Users/unomasanori/projects/DEMO_MVP/trace-connectivity/contracts/storage/BrEvents.sol",
+    "exportedSymbols": {
+      "BrEvents": [
+        7795
+      ]
+    },
+    "id": 7796,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7788,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:70"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7795,
+        "linearizedBaseContracts": [
+          7795
+        ],
+        "name": "BrEvents",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7794,
+            "name": "SomethingEvent",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7793,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7790,
+                  "indexed": true,
+                  "name": "addr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7794,
+                  "src": "82:20:70",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7789,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "82:7:70",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7792,
+                  "indexed": true,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7794,
+                  "src": "112:18:70",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7791,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "112:4:70",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "72:64:70"
+            },
+            "src": "51:86:70"
+          }
+        ],
+        "scope": 7796,
+        "src": "26:114:70"
+      }
+    ],
+    "src": "0:141:70"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/unomasanori/projects/DEMO_MVP/trace-connectivity/contracts/storage/BrEvents.sol",
+    "exportedSymbols": {
+      "BrEvents": [
+        7795
+      ]
+    },
+    "id": 7796,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7788,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:70"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7795,
+        "linearizedBaseContracts": [
+          7795
+        ],
+        "name": "BrEvents",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7794,
+            "name": "SomethingEvent",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7793,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7790,
+                  "indexed": true,
+                  "name": "addr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7794,
+                  "src": "82:20:70",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7789,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "82:7:70",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7792,
+                  "indexed": true,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7794,
+                  "src": "112:18:70",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7791,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "112:4:70",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "72:64:70"
+            },
+            "src": "51:86:70"
+          }
+        ],
+        "scope": 7796,
+        "src": "26:114:70"
+      }
+    ],
+    "src": "0:141:70"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-08-02T06:57:22.167Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
