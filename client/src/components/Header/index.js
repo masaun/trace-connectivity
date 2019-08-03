@@ -10,27 +10,16 @@ const Header = () => (
       </div>
       <ul>
         <li><a href="/" className={styles.link}> Home</a></li>
-        
-        {/* 
-        {process.env.NODE_ENV !== 'production' && (
-          <li><a href="/counter" className={styles.link}> Counter</a></li>
-        )} 
-        */}
-
-        {/* 
-        {process.env.NODE_ENV !== 'production' && (
-          <li><a href="/evm" className={styles.link}> EVM Packages</a></li>
-        )} 
-        */}
-        
-        {/* <li><a href="/faq" className={styles.link}> FAQ</a></li>  */}
-
         {process.env.NODE_ENV !== 'asset' && (
           <li><a href="/asset" className={styles.link}> Asset</a></li>
         )}
 
         {process.env.NODE_ENV !== 'exchange' && (
           <li><a href="/exchange" className={styles.link}> Exchange</a></li>
+        )}
+
+        {process.env.NODE_ENV !== 'registry' && (
+          <li><a href="/registry" className={styles.link}> Registry</a></li>
         )}
       </ul>
     </nav>

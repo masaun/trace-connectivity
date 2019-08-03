@@ -17,4 +17,5 @@ contract TcObjects {
         uint donateAmount;
     }
 
+
 }
