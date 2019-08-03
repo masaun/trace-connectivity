@@ -283,8 +283,8 @@ class App extends Component {
             console.log('=== instanceExchange ===', instanceExchange);
           }
         }
-        if (Exchange.networks) {
-          deployedNetwork = Exchange.networks[networkId.toString()];
+        if (TraceConnectivity.networks) {
+          deployedNetwork = TraceConnectivity.networks[networkId.toString()];
           if (deployedNetwork) {
             instanceTraceConnectivity = new web3.eth.Contract(
               TraceConnectivity.abi,
