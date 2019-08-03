@@ -192,10 +192,12 @@ class App extends Component {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
     let Asset = {};
     let Exchange = {};
+    let TraceConnectivity = {};
 
     try {
       Asset = require("../../build/contracts/Asset.json");        // Load ABI of contract of Asset
       Exchange = require("../../build/contracts/Exchange.json");  // Load ABI of contract of Exchange
+      TraceConnectivity = require("../../build/contracts/TraceConnectivity.json");  // Load ABI of contract of TraceConnectivity
       // Asset = require("../../contracts/Asset.sol");
       // Exchange = require("../../contracts/Exchange.sol");
     } catch (e) {
@@ -226,6 +228,7 @@ class App extends Component {
 
         let instanceAsset = null;
         let instanceExchange = null;
+        let instanceTraceConnectivity = null;
         let deployedNetwork = null;
 
         if (Asset.networks) {
@@ -248,15 +251,25 @@ class App extends Component {
             console.log('=== instanceExchange ===', instanceExchange);
           }
         }
+        if (Exchange.networks) {
+          deployedNetwork = Exchange.networks[networkId.toString()];
+          if (deployedNetwork) {
+            instanceTraceConnectivity = new web3.eth.Contract(
+              TraceConnectivity.abi,
+              deployedNetwork && deployedNetwork.address,
+            );
+            console.log('=== instanceTraceConnectivity ===', instanceTraceConnectivity);
+          }
+        }
 
-        if (instanceAsset || instanceExchange) {
+        if (instanceAsset || instanceExchange || instanceTraceConnectivity) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, asset: instanceAsset, exchange: instanceExchange }, () => {
-              this.refreshValues(instanceAsset, instanceExchange);
+            isMetaMask, asset: instanceAsset, exchange: instanceExchange, trace_connectivity: instanceTraceConnectivity }, () => {
+              this.refreshValues(instanceAsset, instanceExchange, instanceTraceConnectivity);
               setInterval(() => {
-                this.refreshValues(instanceAsset, instanceExchange);
+                this.refreshValues(instanceAsset, instanceExchange, instanceTraceConnectivity);
               }, 5000);
             });
         }
@@ -279,12 +292,15 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceAsset, instanceExchange) => {
+  refreshValues = (instanceAsset, instanceExchange, instanceTraceConnectivity) => {
     if (instanceAsset) {
       console.log('refreshValues of instanceAsset');
     }
     if (instanceExchange) {
       console.log('refreshValues of instanceExchange');
+    }
+    if (instanceTraceConnectivity) {
+      console.log('refreshValues of instanceTraceConnectivity');
     }
   }
 
@@ -555,6 +571,24 @@ class App extends Component {
     );
   }
 
+  renderRegistry() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>Trace Connectivity Contract is good to Go!</h1>
+          <div className={styles.widgets}>
+            <Web3Info {...this.state} />
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
 
   render() {
     return (
@@ -564,6 +598,7 @@ class App extends Component {
           {this.state.route === 'asset' && this.renderAsset()}
           {this.state.route === 'exchange' && this.renderExchange()}
           {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
+          {this.state.route === 'registry' && this.renderRegistry()}
         <Footer />
       </div>
     );
