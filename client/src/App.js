@@ -65,8 +65,40 @@ class App extends Component {
     this.handleInputOwnerAddress = this.handleInputOwnerAddress.bind(this);
     this.handleInputEnergyType = this.handleInputEnergyType.bind(this);
     this.handleInputPrice = this.handleInputPrice.bind(this);    
-    this.sendListingRegister= this.sendListingRegister.bind(this);
+    this.sendListingRegister = this.sendListingRegister.bind(this);
+
+    this.handleInputIspName = this.handleInputIspName.bind(this);
+    this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
+    this.sendIspRegister = this.sendIspRegister.bind(this);
   }
+
+
+  ///////--------------------- ISP Registry ---------------------------
+  handleInputIspName({ target: { value } }) {
+    this.setState({ valueOfIspName: value });
+  }
+
+  handleInputIspAddress({ target: { value } }) {
+    this.setState({ valueOfIspAddress: value });
+  }
+
+  sendIspRegister = async (event) => {
+    const { accounts, trace_connectivity, valueOfIspName, valueOfIspAddress } = this.state;
+
+    const response = await trace_connectivity.methods.ispRegistry(valueOfIspName, valueOfIspAddress).send({ from: accounts[0] })
+    console.log('=== response of ispRegistry function ===', response);  // Debug
+
+    this.setState({
+      isp_name: valueOfIspName, 
+      isp_address: valueOfIspAddress, 
+      valueOfIspName: '', 
+      valueOfIspAddress: '', 
+    });
+  }
+
+
+
+
 
 
   ///////--------------------- Buy/Sell ---------------------------
@@ -582,7 +614,18 @@ class App extends Component {
         <div className={styles.contracts}>
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
-            <Web3Info {...this.state} />
+            <Card width={'350px'} bg="primary">
+              <h2>ISP Registry</h2>
+              <p>ISP name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>ISP account address</p>
+              <Input type="text" value={this.state.valueOfIspAddress} onChange={this.handleInputIspAddress} />
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>ISP Register</Button>
+            </Card>
           </div>
         </div>
       )}
