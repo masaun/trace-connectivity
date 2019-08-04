@@ -18,7 +18,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     function ispRegistry(
         string memory _name,
         address _addr
-    ) public returns (string memory, address, uint)
+    ) public returns (string memory, address, uint, bool)
     {
         uint _id;
         _id = ispId;
@@ -27,12 +27,13 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         isp.name = _name;
         isp.addr = _addr;
         isp.timestamp = now;
+        isp.rightAsIsp = false;
 
-        emit IspRegistry(isp.name, isp.addr, isp.timestamp);
+        emit IspRegistry(isp.name, isp.addr, isp.timestamp, isp.rightAsIsp);
 
         ispId++;
 
-        return (isp.name, isp.addr, isp.timestamp);
+        return (isp.name, isp.addr, isp.timestamp, isp.rightAsIsp);
     }
 
 

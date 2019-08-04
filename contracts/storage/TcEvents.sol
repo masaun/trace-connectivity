@@ -6,7 +6,8 @@ contract TcEvents {
     event IspRegistry (
         string name,
         address addr,
-        uint timestamp
+        uint timestamp,
+        bool rightAsIsp
     );
 
 }
