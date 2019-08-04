@@ -53,6 +53,10 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         donor.timestamp = now;
 
         emit DonorRegistry(donor.name, donor.addr, donor.timestamp, donor.donateAmount);
+ 
+        donorId++;
+        
+        return (donor.name, donor.addr, donor.timestamp, donor.donateAmount);     
     }
 
 

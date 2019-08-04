@@ -626,6 +626,19 @@ class App extends Component {
               
               <Button onClick={this.sendIspRegister}>ISP Register</Button>
             </Card>
+
+            <Card width={'350px'} bg="primary">
+              <h2>Donor Registry</h2>
+              <p>Donor name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Donor account address</p>
+              <Input type="text" value={this.state.valueOfIspAddress} onChange={this.handleInputIspAddress} />
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>Donor Register</Button>
+            </Card>
           </div>
         </div>
       )}
