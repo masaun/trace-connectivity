@@ -8,14 +8,15 @@ contract TcObjects {
         address addr;
         uint uploadSpeed;
         uint downloadSpeed;
-        uint timestamp;
         bool rightAsIsp;  // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
+        uint timestamp;
     }
 
     struct Donor {
         string name;
-        address addr;
+        address addr;  // Donor's wallet address
         uint donateAmount;
+        uint timestamp;
     }
 
 

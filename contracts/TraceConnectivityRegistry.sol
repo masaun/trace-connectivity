@@ -37,8 +37,23 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     }
 
 
-    function donorRegistry() public returns (bool) {
-        
+    function donorRegistry(
+        string memory _name,
+        address _addr, // Donor's wallet address
+        uint _donateAmount
+    ) public returns (string memory, address, uint, uint)
+    {
+        uint _id;
+        _id = donorId;
+
+        Donor storage donor = donors[_id];
+        donor.name = _name;
+        donor.addr = _addr;
+        donor.donateAmount = _donateAmount;
+        donor.timestamp = now;
+
+        emit DonorRegistry(donor.name, donor.addr, isp.timestamp, isp.rightAsIsp);
     }
+
 
 }

@@ -6,8 +6,16 @@ contract TcEvents {
     event IspRegistry (
         string name,
         address addr,
-        uint timestamp,
-        bool rightAsIsp
+        bool rightAsIsp,
+        uint timestamp
     );
+
+    event DonorRegistry (
+        string name,
+        address addr,
+        uint donateAmount,
+        uint timestamp
+    );
+    
 
 }
