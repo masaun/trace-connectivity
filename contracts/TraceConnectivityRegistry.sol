@@ -41,7 +41,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         string memory _name,
         address _addr, // Donor's wallet address
         uint _donateAmount
-    ) public returns (string memory, address, uint, uint)
+    ) public payable returns (string memory, address, uint, uint)
     {
         uint _id;
         _id = donorId;
