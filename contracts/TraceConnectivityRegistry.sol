@@ -18,7 +18,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     function ispRegistry(
         string memory _name,
         address _addr
-    ) public returns (string memory, address, uint, bool)
+    ) public returns (string memory, address, bool, uint)
     {
         uint _id;
         _id = ispId;
@@ -26,14 +26,14 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         Isp storage isp = isps[_id];
         isp.name = _name;
         isp.addr = _addr;
-        isp.timestamp = now;
         isp.rightAsIsp = false;
+        isp.timestamp = now;
 
-        emit IspRegistry(isp.name, isp.addr, isp.timestamp, isp.rightAsIsp);
+        emit IspRegistry(isp.name, isp.addr, isp.rightAsIsp, isp.timestamp);
 
         ispId++;
 
-        return (isp.name, isp.addr, isp.timestamp, isp.rightAsIsp);
+        return (isp.name, isp.addr, isp.rightAsIsp, isp.timestamp);
     }
 
 
@@ -52,7 +52,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         donor.donateAmount = _donateAmount;
         donor.timestamp = now;
 
-        emit DonorRegistry(donor.name, donor.addr, isp.timestamp, isp.rightAsIsp);
+        emit DonorRegistry(donor.name, donor.addr, donor.timestamp, donor.donateAmount);
     }
 
 
