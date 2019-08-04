@@ -9,6 +9,7 @@ contract TcObjects {
         uint uploadSpeed;
         uint downloadSpeed;
         uint timestamp;
+        bool rightAsIsp;  // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
     }
 
     struct Donor {
