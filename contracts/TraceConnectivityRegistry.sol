@@ -6,13 +6,60 @@ import "./modifiers/TcOwnable.sol";
 
 contract TraceConnectivityRegistry is TcStorage, TcOwnable {
 
+    uint public districtId;
     uint public ispId;
     uint public donorId;
 
     constructor() public {
-        ispId = 1;     // ISP's ID is started count from 1
-        donorId = 1;   // Donor's ID is started count from 1
+        districtId = 1; // District's ID is started count from 1
+        ispId = 1;      // ISP's ID is started count from 1
+        donorId = 1;    // Donor's ID is started count from 1
     }
+
+
+
+    function districtRegistry(
+        string memory _countryName,
+        string memory _districtName,
+        uint _uploadSpeedStantdard,
+        uint _downloadSpeedStantdard
+    ) public returns (string memory, string memory, uint, uint, bool, bool, uint)
+    {
+        uint _id;
+        _id = districtId;
+
+        District storage district = districts[_id];
+        district.countryName = _countryName;
+        district.districtName = _districtName;
+        district.uploadSpeedStantdard = _uploadSpeedStantdard;
+        district.downloadSpeedStantdard = _downloadSpeedStantdard;
+        district.isReachUploadSpeedStantdard = false;
+        district.isReachDownloadSpeedStantdard = false;
+        district.timestamp = now;
+
+        emit DistrictRegistry(
+            district.countryName,
+            district.districtName, 
+            district.uploadSpeedStantdard, 
+            district.downloadSpeedStantdard,
+            district.isReachUploadSpeedStantdard,
+            district.isReachDownloadSpeedStantdard,
+            district.timestamp
+        );
+
+        districtId++;
+
+        return (
+            district.countryName,
+            district.districtName, 
+            district.uploadSpeedStantdard, 
+            district.downloadSpeedStantdard,
+            district.isReachUploadSpeedStantdard,
+            district.isReachDownloadSpeedStantdard,
+            district.timestamp
+        );
+    }
+    
 
 
     function ispRegistry(

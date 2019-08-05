@@ -4,8 +4,8 @@ pragma solidity ^0.5.0;
 contract TcObjects {
 
     struct District {
-        string country;     // Name of country
-        string district;    // Name of district
+        string countryName;     // Name of country
+        string districtName;    // Name of district
         address IspAddr;    // Current ISP address which provide connectivity at the moment
         uint uploadSpeedCurrently;   // Current upload speed
         uint downloadSpeedCurrently; // Current download speed
@@ -14,6 +14,8 @@ contract TcObjects {
         uint downloadSpeedStantdard;
         bool isReachUploadSpeedStantdard;
         bool isReachDownloadSpeedStantdard;
+
+        uint timestamp;
     }
 
 

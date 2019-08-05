@@ -3,6 +3,16 @@ pragma solidity ^0.5.0;
 
 contract TcEvents {
 
+    event DistrictRegistry (
+        string countryName,
+        string districtName,
+        uint uploadSpeedStantdard,
+        uint downloadSpeedStantdard,
+        bool isReachUploadSpeedStantdard,
+        bool isReachDownloadSpeedStantdard,
+        uint timestamp
+    );
+
     event IspRegistry (
         string name,
         address addr,
@@ -16,6 +26,5 @@ contract TcEvents {
         uint donateAmount,
         uint timestamp
     );
-    
 
 }
