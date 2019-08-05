@@ -20,9 +20,9 @@ contract TcObjects {
     struct Isp {
         string name;
         address addr;
-        uint uploadSpeed;
-        uint downloadSpeed;
-        bool rightAsIsp;  // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
+        //uint uploadSpeed;    // Move to struct of District
+        //uint downloadSpeed;  // Move to struct of District
+        bool rightAsIsp;     // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
         uint timestamp;
     }
 
