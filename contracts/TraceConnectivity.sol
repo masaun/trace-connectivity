@@ -9,6 +9,19 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
 
     constructor() public {}
 
+
+    /* @dev Update school connectivity data from real-time data */
+    function UpdateConnectivityData(
+        address _schoolAddr,
+        uint _uploadSpeedCurrently,
+        uint _downloadSpeedCurrently,
+    ) returns (bool) 
+    {
+        // In progress
+    }
+
+
+
     function IspIndex() public returns (bool) {
         // [Note]： Don't implementation right now.
         //return isps.length;
@@ -20,6 +33,9 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
         return (isp.name, isp.addr);
     }
 
+
+
+    
 
     
 
