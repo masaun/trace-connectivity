@@ -706,12 +706,18 @@ class App extends Component {
               <p>Stantdard value of upload speed</p>
 
               <p>Current value of upload speed</p>
+
+              <p>Does upload speed reach to stantdard value?</p>
+              True
          
               <hr />
  
               <p>Stantdard value of download speed</p>
 
               <p>Current value of download speed</p>
+
+              <p>Does download speed reach to stantdard value?</p>
+              True
 
               <br />
               
