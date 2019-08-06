@@ -6,57 +6,57 @@ import "./modifiers/TcOwnable.sol";
 
 contract TraceConnectivityRegistry is TcStorage, TcOwnable {
 
-    uint public districtId;
+    uint public schoolId;
     uint public ispId;
     uint public donorId;
 
     constructor() public {
-        districtId = 1; // District's ID is started count from 1
+        schoolId = 1; // District's ID is started count from 1
         ispId = 1;      // ISP's ID is started count from 1
         donorId = 1;    // Donor's ID is started count from 1
     }
 
 
 
-    function districtRegistry(
+    function schoolRegistry(
         string memory _countryName,
-        string memory _districtName,
+        string memory _schoolName,
         uint _uploadSpeedStantdard,
         uint _downloadSpeedStantdard
     ) public returns (string memory, string memory, uint, uint, bool, bool, uint)
     {
         uint _id;
-        _id = districtId;
+        _id = schoolId;
 
-        District storage district = districts[_id];
-        district.countryName = _countryName;
-        district.districtName = _districtName;
-        district.uploadSpeedStantdard = _uploadSpeedStantdard;
-        district.downloadSpeedStantdard = _downloadSpeedStantdard;
-        district.isReachUploadSpeedStantdard = false;
-        district.isReachDownloadSpeedStantdard = false;
-        district.timestamp = now;
+        School storage school = schools[_id];
+        school.countryName = _countryName;
+        school.schoolName = _schoolName;
+        school.uploadSpeedStantdard = _uploadSpeedStantdard;
+        school.downloadSpeedStantdard = _downloadSpeedStantdard;
+        school.isReachUploadSpeedStantdard = false;
+        school.isReachDownloadSpeedStantdard = false;
+        school.timestamp = now;
 
-        emit DistrictRegistry(
-            district.countryName,
-            district.districtName, 
-            district.uploadSpeedStantdard, 
-            district.downloadSpeedStantdard,
-            district.isReachUploadSpeedStantdard,
-            district.isReachDownloadSpeedStantdard,
-            district.timestamp
+        emit SchoolRegistry(
+            school.countryName,
+            school.schoolName, 
+            school.uploadSpeedStantdard, 
+            school.downloadSpeedStantdard,
+            school.isReachUploadSpeedStantdard,
+            school.isReachDownloadSpeedStantdard,
+            school.timestamp
         );
 
-        districtId++;
+        schoolId++;
 
         return (
-            district.countryName,
-            district.districtName, 
-            district.uploadSpeedStantdard, 
-            district.downloadSpeedStantdard,
-            district.isReachUploadSpeedStantdard,
-            district.isReachDownloadSpeedStantdard,
-            district.timestamp
+            school.countryName,
+            school.schoolName, 
+            school.uploadSpeedStantdard, 
+            school.downloadSpeedStantdard,
+            school.isReachUploadSpeedStantdard,
+            school.isReachDownloadSpeedStantdard,
+            school.timestamp
         );
     }
     

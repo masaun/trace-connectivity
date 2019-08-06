@@ -3,9 +3,9 @@ pragma solidity ^0.5.0;
 
 contract TcEvents {
 
-    event DistrictRegistry (
+    event SchoolRegistry (
         string countryName,
-        string districtName,
+        string schoolName,
         uint uploadSpeedStantdard,
         uint downloadSpeedStantdard,
         bool isReachUploadSpeedStantdard,

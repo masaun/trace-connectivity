@@ -3,17 +3,17 @@ pragma solidity ^0.5.0;
 
 contract TcObjects {
 
-    struct District {
+    struct School {
         string countryName;     // Name of country
-        string districtName;    // Name of district
-        address IspAddr;    // Current ISP address which provide connectivity at the moment
+        string schoolName;    // Name of district
+        address IspAddr;        // Current ISP address which provide connectivity at the moment
         uint uploadSpeedCurrently;   // Current upload speed
         uint downloadSpeedCurrently; // Current download speed
         
         uint uploadSpeedStantdard;
         uint downloadSpeedStantdard;
-        bool isReachUploadSpeedStantdard;
-        bool isReachDownloadSpeedStantdard;
+        bool isReachUploadSpeedStantdard;   // If it is true, it meets specific school connectivity of upload speed
+        bool isReachDownloadSpeedStantdard; // If it is true, it meets specific school connectivity of download speed
 
         uint timestamp;
     }
@@ -24,7 +24,7 @@ contract TcObjects {
         address addr;
         //uint uploadSpeed;    // Move to struct of District
         //uint downloadSpeed;  // Move to struct of District
-        bool rightAsIsp;     // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
+        bool rightAsIsp;       // Right as ISP. If upload/download speed doesn't reach standard value, this value become false.
         uint timestamp;
     }
 
