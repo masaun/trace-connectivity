@@ -23,7 +23,7 @@ const Header = () => (
         )}
 
         {process.env.NODE_ENV !== 'school' && (
-          <li><a href="/school" className={styles.link}> School</a></li>
+          <li><a href="/school" className={styles.link}> School Connectivity</a></li>
         )}
       </ul>
     </nav>

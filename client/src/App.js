@@ -655,11 +655,20 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.asset && (
         <div className={styles.contracts}>
-          <h1>Trace Connectivity Contract is good to Go!</h1>
+          <h1>This page can register specific school and can see connectivity depends on school</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>School Registry</h2>
+              <p>Country name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
               <p>School name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Stantdard value of upload speed</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Stantdard value of download speed</p>
               <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
 
               <br />
