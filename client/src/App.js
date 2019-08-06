@@ -646,7 +646,7 @@ class App extends Component {
     );
   }
 
-  renderDistrict() {
+  renderSchool() {
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
@@ -658,13 +658,13 @@ class App extends Component {
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
-              <h2>ISP Registry</h2>
-              <p>ISP name</p>
+              <h2>School Registry</h2>
+              <p>School name</p>
               <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
 
               <br />
               
-              <Button onClick={this.sendIspRegister}>ISP Register</Button>
+              <Button onClick={this.sendIspRegister}>School Register</Button>
             </Card>
           </div>
         </div>
@@ -682,7 +682,7 @@ class App extends Component {
           {this.state.route === 'exchange' && this.renderExchange()}
           {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
           {this.state.route === 'registry' && this.renderRegistry()}
-          {this.state.route === 'district' && this.renderDistrict()}
+          {this.state.route === 'school' && this.renderSchool()}
         <Footer />
       </div>
     );
