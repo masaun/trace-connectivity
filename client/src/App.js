@@ -655,7 +655,7 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.asset && (
         <div className={styles.contracts}>
-          <h1>This page can register specific school and can see connectivity depends on school</h1>
+          <h1>This page can register specific school</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>School Registry</h2>
@@ -682,6 +682,48 @@ class App extends Component {
     );
   }
 
+  renderSchoolConnectivity() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>This page can see status of connectivity depends on school</h1>
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>Status of specific school connectivity</h2>
+              <p>Country name</p>
+
+              <p>School name</p>
+
+              <p>Assigned ISP name (currently)</p>
+
+              <hr />
+
+              <p>Stantdard value of upload speed</p>
+
+              <p>Current value of upload speed</p>
+         
+              <hr />
+ 
+              <p>Stantdard value of download speed</p>
+
+              <p>Current value of download speed</p>
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>Get School Connectivity</Button>
+            </Card>
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.App}>
@@ -692,6 +734,7 @@ class App extends Component {
           {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
           {this.state.route === 'registry' && this.renderRegistry()}
           {this.state.route === 'school' && this.renderSchool()}
+          {this.state.route === 'school_connectivity' && this.renderSchoolConnectivity()}
         <Footer />
       </div>
     );
