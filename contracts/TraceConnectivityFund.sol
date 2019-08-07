@@ -10,4 +10,16 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
 
     constructor() public {}
 
+
+    function FundFromDonor(
+        address _donorAddr,
+        uint _fundAmountFromDonor,
+        uint _fundTotalAmount
+    ) public returns (bool res) 
+    {
+        Fund storage fund = funds[_donorAddr];
+        fund.donorAddr = _donorAddr;
+        fund.fundAmountFromDonor = _fundAmountFromDonor;
+        fund.fundTotalAmount = _fundTotalAmount;
+    }
 }

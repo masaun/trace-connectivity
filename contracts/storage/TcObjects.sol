@@ -37,4 +37,11 @@ contract TcObjects {
     }
 
 
+    struct Fund {
+        address donorAddr;
+        uint fundAmountFromDonor;    // Individual amount of being funded from donor
+        uint fundTotalAmount;        // Total amount of being funded
+    }
+
+
 }

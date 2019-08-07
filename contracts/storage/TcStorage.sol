@@ -16,5 +16,7 @@ contract TcStorage is TcObjects, TcEvents, Ownable {
     
     mapping (uint => Donor) donors;
 
+    mapping (address => Fund) funds;
+
 }
 
