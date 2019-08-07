@@ -646,6 +646,36 @@ class App extends Component {
     );
   }
 
+  renderFund() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>Trace Connectivity Contract is good to Go!</h1>
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>ISP Registry</h2>
+              <p>ISP name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>ISP account address</p>
+              <Input type="text" value={this.state.valueOfIspAddress} onChange={this.handleInputIspAddress} />
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>ISP Register</Button>
+            </Card>
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
+
   renderSchool() {
     return (
       <div className={styles.wrapper}>
@@ -739,6 +769,7 @@ class App extends Component {
           {this.state.route === 'exchange' && this.renderExchange()}
           {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
           {this.state.route === 'registry' && this.renderRegistry()}
+          {this.state.route === 'fund' && this.renderFund()}          
           {this.state.route === 'school' && this.renderSchool()}
           {this.state.route === 'school_connectivity' && this.renderSchoolConnectivity()}
         <Footer />
