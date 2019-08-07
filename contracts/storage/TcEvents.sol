@@ -34,4 +34,10 @@ contract TcEvents {
         uint downloadSpeedCurrently,
         uint timestamp
     );
+
+    event FundFromDonor(
+        address donorAddr,
+        uint fundAmountFromDonor,
+        uint fundTotalAmount
+    );
 }
