@@ -27,4 +27,11 @@ contract TcEvents {
         uint timestamp
     );
 
+    event UpdateConnectivityData(
+        //address schoolAddr,
+        string schoolName,
+        uint uploadSpeedCurrently,
+        uint downloadSpeedCurrently,
+        uint timestamp
+    );
 }
