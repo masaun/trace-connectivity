@@ -15,7 +15,11 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         address _donorAddr,
         uint _fundAmountFromDonor,
         uint _fundTotalAmount
-    ) public returns (address, uint, uint) 
+    ) 
+        public
+        //onlyDonor(_donorAddr)
+        payable
+        returns (address, uint, uint)
     {
         Fund storage fund = funds[_donorAddr];
         fund.donorAddr = _donorAddr;
