@@ -658,16 +658,16 @@ class App extends Component {
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
-              <h2>ISP Registry</h2>
-              <p>ISP name</p>
+              <h2>Fund from donors</h2>
+              <p>Donor address</p>
               <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
 
-              <p>ISP account address</p>
+              <p>Fund amount from donor</p>
               <Input type="text" value={this.state.valueOfIspAddress} onChange={this.handleInputIspAddress} />
 
               <br />
               
-              <Button onClick={this.sendIspRegister}>ISP Register</Button>
+              <Button onClick={this.sendIspRegister}> Fund（Donate）</Button>
             </Card>
           </div>
         </div>
