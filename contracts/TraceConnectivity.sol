@@ -19,7 +19,6 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry {
         uint _downloadSpeedCurrently
     ) public returns (string memory, uint, uint, uint) 
     {
-        // In progress
         School memory school = schools[_schoolId];
         school.schoolName = _schoolName;
         school.uploadSpeedCurrently = _uploadSpeedCurrently;
