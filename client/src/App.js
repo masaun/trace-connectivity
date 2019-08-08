@@ -29,9 +29,9 @@ class App extends Component {
       /////// Real-time data of school connectivity
       uploadSpeedCurrently: 0, 
       downloadSpeedCurrently: 0,
-      timestamp: 0      
+      timestamp: 0,
 
-      realTimeDataList: []
+      realTimeDataList: [],
 
 
       /////// Value below is for confirmPurchase and confirmReceived function
