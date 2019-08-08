@@ -8,6 +8,9 @@ import Web3Info from "./components/Web3Info/index.js";
 import { Loader, Button, Card, Input, Heading, Table, Form } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
+import { LineChart, Line, XAxis, YAxis, BarChart, Bar, PieChart, Pie, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { moment } from 'moment'
+
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 
 import styles from './App.module.scss';
@@ -25,6 +28,9 @@ class App extends Component {
       web3: null,
       accounts: null,
       route: window.location.pathname.replace("/",""),
+
+      /////// SchoolId search
+      valueOfSchoolId: 0,
 
       /////// Real-time data of school connectivity
       uploadSpeedCurrently: 0, 
@@ -79,6 +85,9 @@ class App extends Component {
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
 
+    this.handleInputSchoolId = this.handleInputSchoolId.bind(this);
+    this.sendSchoolDetail = this.sendSchoolDetail.bind(this);
+
     this.getRealTimeData = this.getRealTimeData.bind(this);
   }
 
@@ -104,6 +113,20 @@ class App extends Component {
       valueOfIspName: '', 
       valueOfIspAddress: '', 
     });
+  }
+
+
+  ///////--------------------- SchoolId search ---------------------------
+  handleInputSchoolId({ target: { value } }) {
+    this.setState({ valueOfSchoolId: Number(value) });
+  }
+
+  sendSchoolDetail = async () => {
+    const { accounts, trace_connectivity, valueOfSchoolId } = this.state;
+    const _schoolId = valueOfSchoolId;
+    
+    const response = await trace_connectivity.methods.currentRightOfIsp(_schoolId).call();
+        console.log('=== response of currentRightOfIsp function ===', response);
   }
 
 
@@ -160,7 +183,7 @@ class App extends Component {
     });
 
     this.setState({
-      listingDetail: this.state.realTimeDataList
+      realTimeDataList: this.state.realTimeDataList
     });
 
   }
@@ -786,6 +809,24 @@ class App extends Component {
   }
 
   renderSchoolConnectivity() {
+    const dataUploadSpeed = [
+      { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
+      { name: '8/8', uploadSpeedStandard: 10, uploadSpeedCurrently: 13 },
+      { name: '8/9', uploadSpeedStandard: 10, uploadSpeedCurrently: 19 },
+      { name: '8/10', uploadSpeedStandard: 10, uploadSpeedCurrently: 11 },
+      { name: '8/11', uploadSpeedStandard: 10, uploadSpeedCurrently: 9 },
+      { name: '8/12', uploadSpeedStandard: 10, uploadSpeedCurrently: 22 }
+    ]
+
+    const dataDownloadSpeed = [
+      { name: '8/7', downloadSpeedStandard: 15, downloadSpeedCurrently: 5 },
+      { name: '8/8', downloadSpeedStandard: 15, downloadSpeedCurrently: 3 },
+      { name: '8/9', downloadSpeedStandard: 15, downloadSpeedCurrently: 9 },
+      { name: '8/10', downloadSpeedStandard: 15, downloadSpeedCurrently: 10 },
+      { name: '8/11', downloadSpeedStandard: 15, downloadSpeedCurrently: 12 },
+      { name: '8/12', downloadSpeedStandard: 15, downloadSpeedCurrently: 13 }
+    ]
+
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
@@ -799,6 +840,17 @@ class App extends Component {
           <Card width={'350px'} bg="primary">
             <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
           </Card>
+
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>School Id Search</h2>
+              <Input type="text" value={this.state.valueOfSchoolId} onChange={this.handleInputSchoolId} />
+
+              <br />
+
+              <Button onClick={this.sendSchoolDetail}>Search School Detail</Button>
+            </Card>
+          </div>
 
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
@@ -825,11 +877,26 @@ class App extends Component {
               <p>Current value of download speed</p>
 
               <p>Does download speed reach to stantdard value?</p>
-              True
+            </Card>
 
-              <br />
-              
-              <Button onClick={this.sendIspRegister}>Get School Connectivity</Button>
+            <Card width={'400px'} bg="primary">
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataUploadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
+
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataDownloadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
+                </LineChart>
+              </ResponsiveContainer>
             </Card>
           </div>
         </div>
