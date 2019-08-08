@@ -103,8 +103,24 @@ class App extends Component {
   
   /* @dev This is trigger function for getting real-time data for only DEMO */
   getRealTimeData = async () => {
+    const realTimeData = {
+      uploadSpeedCurrently: 100,
+      downloadSpeedCurrently: 100,
+      timestamp: 15440340
+    }
+
+    if (realTimeData['uploadSpeedCurrently'] > 90) {
+      console.log('======= Satisfy standard value ======')  // OK
+    } else {
+      console.log('======= Does not Satisfy standard value ======')  // OK 
+    }
 
   }
+
+
+
+
+
 
 
 
