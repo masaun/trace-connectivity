@@ -29,6 +29,9 @@ class App extends Component {
       accounts: null,
       route: window.location.pathname.replace("/",""),
 
+      /////// SchoolId search
+      valueOfSchoolId: 0,
+
       /////// Real-time data of school connectivity
       uploadSpeedCurrently: 0, 
       downloadSpeedCurrently: 0,
@@ -82,6 +85,9 @@ class App extends Component {
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
 
+    this.handleInputSchoolId = this.handleInputSchoolId.bind(this);
+    this.sendSchoolDetail = this.sendSchoolDetail.bind(this);
+
     this.getRealTimeData = this.getRealTimeData.bind(this);
   }
 
@@ -107,6 +113,20 @@ class App extends Component {
       valueOfIspName: '', 
       valueOfIspAddress: '', 
     });
+  }
+
+
+  ///////--------------------- SchoolId search ---------------------------
+  handleInputSchoolId({ target: { value } }) {
+    this.setState({ valueOfSchoolId: Number(value) });
+  }
+
+  sendSchoolDetail = async () => {
+    const { accounts, trace_connectivity, valueOfSchoolId } = this.state;
+    const _schoolId = valueOfSchoolId;
+    
+    const response = await trace_connectivity.methods.currentRightOfIsp(_schoolId).call();
+        console.log('=== response of currentRightOfIsp function ===', response);
   }
 
 
@@ -824,11 +844,11 @@ class App extends Component {
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>School Id Search</h2>
-              <Input type="text" value={this.state.valueOfTokenId} onChange={this.handleInputTokenId} />
+              <Input type="text" value={this.state.valueOfSchoolId} onChange={this.handleInputSchoolId} />
 
               <br />
 
-              <Button onClick={this.sendListingDetail}>Search School</Button>
+              <Button onClick={this.sendSchoolDetail}>Search School Detail</Button>
             </Card>
           </div>
 
