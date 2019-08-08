@@ -26,6 +26,14 @@ class App extends Component {
       accounts: null,
       route: window.location.pathname.replace("/",""),
 
+      /////// Real-time data of school connectivity
+      uploadSpeedCurrently: 0, 
+      downloadSpeedCurrently: 0,
+      timestamp: 0      
+
+      realTimeDataList: []
+
+
       /////// Value below is for confirmPurchase and confirmReceived function
       buy_price: '',
       sell_price: '',
@@ -133,6 +141,27 @@ class App extends Component {
       console.log('======= Does not Satisfy standard value of download speed ======')  // OK
       const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
     }
+
+
+
+    // Save real-time data
+    this.setState({
+      uploadSpeedCurrently: realTimeData['uploadSpeedCurrently'], 
+      downloadSpeedCurrently: realTimeData['downloadSpeedCurrently'],
+      timestamp: realTimeData['timestamp']
+    });
+
+
+    // Add value above to realTimeDataList
+    this.state.realTimeDataList.push({
+      uploadSpeedCurrently: realTimeData['uploadSpeedCurrently'], 
+      downloadSpeedCurrently: realTimeData['downloadSpeedCurrently'],
+      timestamp: realTimeData['timestamp']
+    });
+
+    this.setState({
+      listingDetail: this.state.realTimeDataList
+    });
 
   }
 

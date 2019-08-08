@@ -10,7 +10,9 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
 
     constructor() public {}
 
-    /* @dev Transfer the right of ISP for providing connedctivity */
+    /*** 
+     * @dev Transfer the right of ISP for providing connedctivity 
+     ***/
     function transferRightOfIsp(
         uint _oldIspId,
         uint _newIspId,
@@ -32,7 +34,9 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         return (_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.IspAddr);
     }
 
-    /* @dev Update school connectivity data from real-time data */
+    /*** 
+     * @dev Update school connectivity data from real-time data 
+     ***/
     function updateConnectivityData(
         uint _schoolId,
         //address _schoolAddr,
