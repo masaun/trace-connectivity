@@ -845,6 +845,17 @@ class App extends Component {
 
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
+              <h2>School Id Search</h2>
+              <Input type="text" value={this.state.valueOfTokenId} onChange={this.handleInputTokenId} />
+
+              <br />
+
+              <Button onClick={this.sendListingDetail}>Search School</Button>
+            </Card>
+          </div>
+
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
               <h2>Status of specific school connectivity</h2>
               <p>Country name</p>
 
