@@ -16,7 +16,7 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         uint _newIspId,
         address _newIspAddr,
         uint _schoolId
-    ) public returns (bool)
+    ) public returns (uint, bool, uint, bool, uint, address)
     {    
         Isp storage oldIsp = isps[_oldIspId];
         oldIsp.rightAsIsp = false;     // Change right of old ISP
@@ -26,6 +26,10 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
 
         School storage school = schools[_schoolId];
         school.IspAddr = _newIspAddr;  // Change right of ISP which provide connectivity
+
+        emit TransferRightOfIsp(_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.IspAddr);
+
+        return (_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.IspAddr);
     }
 
     /* @dev Update school connectivity data from real-time data */

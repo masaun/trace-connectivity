@@ -40,4 +40,14 @@ contract TcEvents {
         uint fundAmountFromDonor,
         uint fundTotalAmount
     );
+
+    event TransferRightOfIsp(
+        uint _oldIspId,
+        bool _oldIspRightAsIsp,
+        uint _newIspId,
+        bool _newIspRightAsIsp,
+        uint _schoolId,
+        address _newIspAddr
+    );
+    
 }
