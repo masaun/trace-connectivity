@@ -11,21 +11,21 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
     constructor() public {}
 
     /* @dev Transfer the right of ISP for providing connedctivity */
-    function TransferRightOfIsp(
+    function transferRightOfIsp(
         uint _oldIspId,
         uint _newIspId,
         address _newIspAddr,
-        uint _schoolId,
-    ) public returns (bool) 
+        uint _schoolId
+    ) public returns (bool)
     {    
-        Isp storage isp = isps[_oldIspId];
-        isp.rightAsIsp = false;
+        Isp storage oldIsp = isps[_oldIspId];
+        oldIsp.rightAsIsp = false;     // Change right of old ISP
 
-        Isp storage isp = isps[_newIspId];
-        isp.rightAsIsp = true;
+        Isp storage newIsp = isps[_newIspId];
+        newIsp.rightAsIsp = true;      // Change right of new ISP
 
         School storage school = schools[_schoolId];
-        school.IspAddr = _newIspAddr;  // Change right of old ISP
+        school.IspAddr = _newIspAddr;  // Change right of ISP which provide connectivity
     }
 
     /* @dev Update school connectivity data from real-time data */
@@ -67,12 +67,6 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         Isp memory isp = isps[_id];
         return (isp.name, isp.addr);
     }
-
-
-
-    
-
-    
 
 
 }

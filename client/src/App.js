@@ -124,14 +124,14 @@ class App extends Component {
       console.log('======= Satisfy standard value of upload speed ======')  // OK
     } else {
       console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
-      const response = await trace_connectivity.methods.TransferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
+      const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
     }
 
     if (realTimeData['downloadSpeedCurrently'] > standardValueOfDownloadSpeed) {
       console.log('======= Satisfy standard value of download speed ======')  // OK
     } else {
       console.log('======= Does not Satisfy standard value of download speed ======')  // OK
-      const response = await trace_connectivity.methods.TransferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
+      const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
     }
 
   }
