@@ -103,6 +103,14 @@ class App extends Component {
   
   /* @dev This is trigger function for getting real-time data for only DEMO */
   getRealTimeData = async () => {
+    const { accounts, trace_connectivity } = this.state;
+
+    // Sample data
+    const _oldIspId = 1
+    const _newIspId = 2
+    const _newIspAddr = '0xc3871a0d61809e072e296b86bfd29f75abb93ad2'
+    const _schoolId = 1
+
     const realTimeData = {
       uploadSpeedCurrently: 100,
       downloadSpeedCurrently: 100,
@@ -116,12 +124,14 @@ class App extends Component {
       console.log('======= Satisfy standard value of upload speed ======')  // OK
     } else {
       console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
+      const response = await trace_connectivity.methods.TransferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
     }
 
     if (realTimeData['downloadSpeedCurrently'] > standardValueOfDownloadSpeed) {
       console.log('======= Satisfy standard value of download speed ======')  // OK
     } else {
       console.log('======= Does not Satisfy standard value of download speed ======')  // OK
+      const response = await trace_connectivity.methods.TransferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
     }
 
   }
