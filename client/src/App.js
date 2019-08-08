@@ -790,12 +790,12 @@ class App extends Component {
 
   renderSchoolConnectivity() {
     const data = [
-      { name: 'a', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 12, pv: 5 },
-      { name: 'b', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 13, pv: 3 },
-      { name: 'c', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 19, pv: 9 },
-      { name: 'd', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 11, pv: 10 },
-      { name: 'e', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 9, pv: 12 },
-      { name: 'f', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 22, pv: 13 }
+      { name: 'a', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 12, downloadSpeedCurrently: 5 },
+      { name: 'b', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 13, downloadSpeedCurrently: 3 },
+      { name: 'c', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 19, downloadSpeedCurrently: 9 },
+      { name: 'd', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 11, downloadSpeedCurrently: 10 },
+      { name: 'e', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 9, downloadSpeedCurrently: 12 },
+      { name: 'f', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 22, downloadSpeedCurrently: 13 }
     ]
 
     return (
@@ -815,8 +815,8 @@ class App extends Component {
                 <YAxis />
                 <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
                 <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
-                <Line dataKey="uv" stroke="#8884d8" />
-                <Line dataKey="pv" stroke="#82ca9d" />
+                <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
+                <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
               </LineChart>
             </ResponsiveContainer>
           </div>
