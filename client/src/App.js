@@ -789,13 +789,22 @@ class App extends Component {
   }
 
   renderSchoolConnectivity() {
-    const data = [
-      { name: '8/7', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 12, downloadSpeedCurrently: 5 },
-      { name: '8/8', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 13, downloadSpeedCurrently: 3 },
-      { name: '8/9', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 19, downloadSpeedCurrently: 9 },
-      { name: '8/10', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 11, downloadSpeedCurrently: 10 },
-      { name: '8/11', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 9, downloadSpeedCurrently: 12 },
-      { name: '8/12', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 22, downloadSpeedCurrently: 13 }
+    const dataUploadSpeed = [
+      { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
+      { name: '8/8', uploadSpeedStandard: 10, uploadSpeedCurrently: 13 },
+      { name: '8/9', uploadSpeedStandard: 10, uploadSpeedCurrently: 19 },
+      { name: '8/10', uploadSpeedStandard: 10, uploadSpeedCurrently: 11 },
+      { name: '8/11', uploadSpeedStandard: 10, uploadSpeedCurrently: 9 },
+      { name: '8/12', uploadSpeedStandard: 10, uploadSpeedCurrently: 22 }
+    ]
+
+    const dataDownloadSpeed = [
+      { name: '8/7', downloadSpeedStandard: 15, downloadSpeedCurrently: 5 },
+      { name: '8/8', downloadSpeedStandard: 15, downloadSpeedCurrently: 3 },
+      { name: '8/9', downloadSpeedStandard: 15, downloadSpeedCurrently: 9 },
+      { name: '8/10', downloadSpeedStandard: 15, downloadSpeedCurrently: 10 },
+      { name: '8/11', downloadSpeedStandard: 15, downloadSpeedCurrently: 12 },
+      { name: '8/12', downloadSpeedStandard: 15, downloadSpeedCurrently: 13 }
     ]
 
     return (
@@ -810,13 +819,22 @@ class App extends Component {
 
           <div>
             <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
-              <LineChart data={data}>
+              <LineChart data={dataUploadSpeed}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
+                <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div>
+            <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+              <LineChart data={dataDownloadSpeed}>
+                <XAxis dataKey="name" />
+                <YAxis />
                 <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
                 <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
-                <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
               </LineChart>
             </ResponsiveContainer>
           </div>
