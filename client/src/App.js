@@ -47,7 +47,7 @@ class App extends Component {
       listingIndex: [],
 
       //////// Listing Detail
-      owner_address_detail: '', 
+      owner_address_detail: '',
       energy_type_detail: '', 
       price_detail: 0,
       transaction_hash_detail: 'in progress of implementation',
@@ -70,6 +70,8 @@ class App extends Component {
     this.handleInputIspName = this.handleInputIspName.bind(this);
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
+
+    this.getRealTimeData = this.getRealTimeData.bind(this);
   }
 
 
@@ -96,6 +98,13 @@ class App extends Component {
     });
   }
 
+
+  ///////--------------------- logic of judging Real-Time data ---------------------------
+  
+  /* @dev This is trigger function for getting real-time data for only DEMO */
+  getRealTimeData = async () => {
+
+  }
 
 
 
@@ -722,6 +731,11 @@ class App extends Component {
       {this.state.web3 && this.state.asset && (
         <div className={styles.contracts}>
           <h1>This page can see status of connectivity depends on school</h1>
+
+          <Card width={'350px'} bg="primary">
+            <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
+          </Card>
+
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>Status of specific school connectivity</h2>
