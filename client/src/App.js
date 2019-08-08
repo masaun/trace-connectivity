@@ -8,6 +8,9 @@ import Web3Info from "./components/Web3Info/index.js";
 import { Loader, Button, Card, Input, Heading, Table, Form } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
+import { LineChart, Line, XAxis, YAxis } from 'recharts'
+
+
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 
 import styles from './App.module.scss';
@@ -786,6 +789,15 @@ class App extends Component {
   }
 
   renderSchoolConnectivity() {
+    const data = [
+      { name: 'a', uv: 12, pv: 5 },
+      { name: 'b', uv: 13, pv: 3 },
+      { name: 'c', uv: 19, pv: 9 },
+      { name: 'd', uv: 11, pv: 10 },
+      { name: 'e', uv: 9, pv: 12 },
+      { name: 'f', uv: 22, pv: 13 }
+    ]
+
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
@@ -795,6 +807,15 @@ class App extends Component {
       {this.state.web3 && this.state.asset && (
         <div className={styles.contracts}>
           <h1>This page can see status of connectivity depends on school</h1>
+
+          <div>
+            <LineChart width={400} height={200} data={data}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Line dataKey="uv" stroke="#8884d8" />
+              <Line dataKey="pv" stroke="#82ca9d" />
+            </LineChart>
+          </div>
 
           <Card width={'350px'} bg="primary">
             <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
