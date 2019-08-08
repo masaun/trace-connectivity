@@ -10,7 +10,6 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
 
     constructor() public {}
 
-
     /* @dev Update school connectivity data from real-time data */
     function updateConnectivityData(
         uint _schoolId,

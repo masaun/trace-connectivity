@@ -109,10 +109,19 @@ class App extends Component {
       timestamp: 15440340
     }
 
-    if (realTimeData['uploadSpeedCurrently'] > 90) {
-      console.log('======= Satisfy standard value ======')  // OK
+    const standardValueOfUploadSpeed = 90
+    const standardValueOfDownloadSpeed = 110
+
+    if (realTimeData['uploadSpeedCurrently'] > standardValueOfUploadSpeed) {
+      console.log('======= Satisfy standard value of upload speed ======')  // OK
     } else {
-      console.log('======= Does not Satisfy standard value ======')  // OK 
+      console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
+    }
+
+    if (realTimeData['downloadSpeedCurrently'] > standardValueOfDownloadSpeed) {
+      console.log('======= Satisfy standard value of download speed ======')  // OK
+    } else {
+      console.log('======= Does not Satisfy standard value of download speed ======')  // OK
     }
 
   }
