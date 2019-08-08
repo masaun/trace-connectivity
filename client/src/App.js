@@ -160,7 +160,7 @@ class App extends Component {
     });
 
     this.setState({
-      listingDetail: this.state.realTimeDataList
+      realTimeDataList: this.state.realTimeDataList
     });
 
   }
