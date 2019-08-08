@@ -817,28 +817,6 @@ class App extends Component {
         <div className={styles.contracts}>
           <h1>This page can see status of connectivity depends on school</h1>
 
-          <div>
-            <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
-              <LineChart data={dataUploadSpeed}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
-                <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div>
-            <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
-              <LineChart data={dataDownloadSpeed}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
-                <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
           <Card width={'350px'} bg="primary">
             <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
           </Card>
@@ -879,6 +857,26 @@ class App extends Component {
               <p>Current value of download speed</p>
 
               <p>Does download speed reach to stantdard value?</p>
+            </Card>
+
+            <Card width={'400px'} bg="primary">
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataUploadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
+
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataDownloadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
+                </LineChart>
+              </ResponsiveContainer>
             </Card>
           </div>
         </div>
