@@ -868,11 +868,6 @@ class App extends Component {
               <p>Current value of download speed</p>
 
               <p>Does download speed reach to stantdard value?</p>
-              True
-
-              <br />
-              
-              <Button onClick={this.sendIspRegister}>Get School Connectivity</Button>
             </Card>
           </div>
         </div>
