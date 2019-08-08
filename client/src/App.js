@@ -26,6 +26,14 @@ class App extends Component {
       accounts: null,
       route: window.location.pathname.replace("/",""),
 
+      /////// Real-time data of school connectivity
+      uploadSpeedCurrently: 0, 
+      downloadSpeedCurrently: 0,
+      timestamp: 0,
+
+      realTimeDataList: [],
+
+
       /////// Value below is for confirmPurchase and confirmReceived function
       buy_price: '',
       sell_price: '',
@@ -47,7 +55,7 @@ class App extends Component {
       listingIndex: [],
 
       //////// Listing Detail
-      owner_address_detail: '', 
+      owner_address_detail: '',
       energy_type_detail: '', 
       price_detail: 0,
       transaction_hash_detail: 'in progress of implementation',
@@ -70,6 +78,8 @@ class App extends Component {
     this.handleInputIspName = this.handleInputIspName.bind(this);
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
+
+    this.getRealTimeData = this.getRealTimeData.bind(this);
   }
 
 
@@ -95,6 +105,69 @@ class App extends Component {
       valueOfIspAddress: '', 
     });
   }
+
+
+  ///////--------------------- logic of judging Real-Time data ---------------------------
+  
+  /* @dev This is trigger function for getting real-time data for only DEMO */
+  getRealTimeData = async () => {
+    const { accounts, trace_connectivity } = this.state;
+
+    // Sample data
+    const _oldIspId = 1
+    const _newIspId = 2
+    const _newIspAddr = '0xc3871a0d61809e072e296b86bfd29f75abb93ad2'
+    const _schoolId = 1
+
+    const realTimeData = {
+      uploadSpeedCurrently: 100,
+      downloadSpeedCurrently: 100,
+      timestamp: 15440340
+    }
+
+    const standardValueOfUploadSpeed = 90
+    const standardValueOfDownloadSpeed = 110
+
+    if (realTimeData['uploadSpeedCurrently'] > standardValueOfUploadSpeed) {
+      console.log('======= Satisfy standard value of upload speed ======')  // OK
+    } else {
+      console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
+      const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
+    }
+
+    if (realTimeData['downloadSpeedCurrently'] > standardValueOfDownloadSpeed) {
+      console.log('======= Satisfy standard value of download speed ======')  // OK
+    } else {
+      console.log('======= Does not Satisfy standard value of download speed ======')  // OK
+      const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
+    }
+
+
+
+    // Save real-time data
+    this.setState({
+      uploadSpeedCurrently: realTimeData['uploadSpeedCurrently'], 
+      downloadSpeedCurrently: realTimeData['downloadSpeedCurrently'],
+      timestamp: realTimeData['timestamp']
+    });
+
+
+    // Add value above to realTimeDataList
+    this.state.realTimeDataList.push({
+      uploadSpeedCurrently: realTimeData['uploadSpeedCurrently'], 
+      downloadSpeedCurrently: realTimeData['downloadSpeedCurrently'],
+      timestamp: realTimeData['timestamp']
+    });
+
+    this.setState({
+      listingDetail: this.state.realTimeDataList
+    });
+
+  }
+
+
+
+
 
 
 
@@ -646,6 +719,125 @@ class App extends Component {
     );
   }
 
+  renderFund() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>Trace Connectivity Contract is good to Go!</h1>
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>Fund from donors</h2>
+              <p>Donor address</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Fund amount from donor</p>
+              <Input type="text" value={this.state.valueOfIspAddress} onChange={this.handleInputIspAddress} />
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}> Fund（Donate）</Button>
+            </Card>
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
+
+  renderSchool() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>This page can register specific school</h1>
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>School Registry</h2>
+              <p>Country name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>School name</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Stantdard value of upload speed</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <p>Stantdard value of download speed</p>
+              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>School Register</Button>
+            </Card>
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
+
+  renderSchoolConnectivity() {
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.asset && (
+        <div className={styles.contracts}>
+          <h1>This page can see status of connectivity depends on school</h1>
+
+          <Card width={'350px'} bg="primary">
+            <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
+          </Card>
+
+          <div className={styles.widgets}>
+            <Card width={'350px'} bg="primary">
+              <h2>Status of specific school connectivity</h2>
+              <p>Country name</p>
+
+              <p>School name</p>
+
+              <p>Assigned ISP name (currently)</p>
+
+              <hr />
+
+              <p>Stantdard value of upload speed</p>
+
+              <p>Current value of upload speed</p>
+
+              <p>Does upload speed reach to stantdard value?</p>
+              True
+         
+              <hr />
+ 
+              <p>Stantdard value of download speed</p>
+
+              <p>Current value of download speed</p>
+
+              <p>Does download speed reach to stantdard value?</p>
+              True
+
+              <br />
+              
+              <Button onClick={this.sendIspRegister}>Get School Connectivity</Button>
+            </Card>
+          </div>
+        </div>
+      )}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.App}>
@@ -655,6 +847,9 @@ class App extends Component {
           {this.state.route === 'exchange' && this.renderExchange()}
           {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
           {this.state.route === 'registry' && this.renderRegistry()}
+          {this.state.route === 'fund' && this.renderFund()}          
+          {this.state.route === 'school' && this.renderSchool()}
+          {this.state.route === 'school_connectivity' && this.renderSchoolConnectivity()}
         <Footer />
       </div>
     );
