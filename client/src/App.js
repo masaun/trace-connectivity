@@ -8,8 +8,8 @@ import Web3Info from "./components/Web3Info/index.js";
 import { Loader, Button, Card, Input, Heading, Table, Form } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
-import { LineChart, Line, XAxis, YAxis } from 'recharts'
-
+import { LineChart, Line, XAxis, YAxis, BarChart, Bar, PieChart, Pie, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { moment } from 'moment'
 
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 
@@ -790,12 +790,12 @@ class App extends Component {
 
   renderSchoolConnectivity() {
     const data = [
-      { name: 'a', uv: 12, pv: 5 },
-      { name: 'b', uv: 13, pv: 3 },
-      { name: 'c', uv: 19, pv: 9 },
-      { name: 'd', uv: 11, pv: 10 },
-      { name: 'e', uv: 9, pv: 12 },
-      { name: 'f', uv: 22, pv: 13 }
+      { name: 'a', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 12, pv: 5 },
+      { name: 'b', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 13, pv: 3 },
+      { name: 'c', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 19, pv: 9 },
+      { name: 'd', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 11, pv: 10 },
+      { name: 'e', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 9, pv: 12 },
+      { name: 'f', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uv: 22, pv: 13 }
     ]
 
     return (
@@ -809,12 +809,16 @@ class App extends Component {
           <h1>This page can see status of connectivity depends on school</h1>
 
           <div>
-            <LineChart width={400} height={200} data={data}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Line dataKey="uv" stroke="#8884d8" />
-              <Line dataKey="pv" stroke="#82ca9d" />
-            </LineChart>
+            <ResponsiveContainer width="80%" height="40%" minWidth={400} minHeight={200}>
+              <LineChart width={400} height={200} data={data}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
+                <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
+                <Line dataKey="uv" stroke="#8884d8" />
+                <Line dataKey="pv" stroke="#82ca9d" />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
 
           <Card width={'350px'} bg="primary">
