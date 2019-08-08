@@ -790,12 +790,12 @@ class App extends Component {
 
   renderSchoolConnectivity() {
     const data = [
-      { name: 'a', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 12, downloadSpeedCurrently: 5 },
-      { name: 'b', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 13, downloadSpeedCurrently: 3 },
-      { name: 'c', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 19, downloadSpeedCurrently: 9 },
-      { name: 'd', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 11, downloadSpeedCurrently: 10 },
-      { name: 'e', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 9, downloadSpeedCurrently: 12 },
-      { name: 'f', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 22, downloadSpeedCurrently: 13 }
+      { name: '8/7', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 12, downloadSpeedCurrently: 5 },
+      { name: '8/8', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 13, downloadSpeedCurrently: 3 },
+      { name: '8/9', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 19, downloadSpeedCurrently: 9 },
+      { name: '8/10', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 11, downloadSpeedCurrently: 10 },
+      { name: '8/11', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 9, downloadSpeedCurrently: 12 },
+      { name: '8/12', uploadSpeedStandard: 10, downloadSpeedStandard: 15, uploadSpeedCurrently: 22, downloadSpeedCurrently: 13 }
     ]
 
     return (
@@ -809,8 +809,8 @@ class App extends Component {
           <h1>This page can see status of connectivity depends on school</h1>
 
           <div>
-            <ResponsiveContainer width="80%" height="40%" minWidth={400} minHeight={200}>
-              <LineChart width={400} height={200} data={data}>
+            <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+              <LineChart data={data}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
