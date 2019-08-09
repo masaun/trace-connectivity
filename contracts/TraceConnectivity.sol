@@ -56,27 +56,21 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
     function updateConnectivityData(
         uint _schoolId,
         //address _schoolAddr,
-        string memory _schoolName,
-        uint _uploadSpeedCurrently,
-        uint _downloadSpeedCurrently
-    ) public returns (string memory, uint, uint, uint) 
+        string memory _schoolName
+    ) public returns (string memory, uint) 
     {
         // In progress
         School memory school = schools[_schoolId];
         school.schoolName = _schoolName;
-        school.uploadSpeedCurrently = _uploadSpeedCurrently;
-        school.downloadSpeedCurrently = _downloadSpeedCurrently;
         school.timestamp = now;
 
         emit UpdateConnectivityData(
             //address schoolAddr,
             school.schoolName,
-            school.uploadSpeedCurrently,
-            school.downloadSpeedCurrently,
             school.timestamp
         );
 
-        return (school.schoolName, school.uploadSpeedCurrently, school.downloadSpeedCurrently, school.timestamp);
+        return (school.schoolName, school.timestamp);
     }
 
 

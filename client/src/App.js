@@ -519,9 +519,6 @@ class App extends Component {
       <div className={styles.App}>
         <Header />
           {this.state.route === '' && this.renderInstructions()}
-          {this.state.route === 'asset' && this.renderAsset()}
-          {this.state.route === 'exchange' && this.renderExchange()}
-          {this.state.route === 'exchange/1' && this.renderExchangeDetail()}
           {this.state.route === 'registry' && this.renderRegistry()}
           {this.state.route === 'fund' && this.renderFund()}          
           {this.state.route === 'school' && this.renderSchool()}

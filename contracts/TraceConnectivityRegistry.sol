@@ -23,7 +23,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         string memory _schoolName,
         uint _uploadSpeedStantdard,
         uint _downloadSpeedStantdard
-    ) public returns (string memory, string memory, uint, uint, bool, bool, uint)
+    ) public returns (string memory, string memory, uint, uint, uint)
     {
         uint _id;
         _id = schoolId;
@@ -33,8 +33,6 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         school.schoolName = _schoolName;
         school.uploadSpeedStantdard = _uploadSpeedStantdard;
         school.downloadSpeedStantdard = _downloadSpeedStantdard;
-        school.isReachUploadSpeedStantdard = false;
-        school.isReachDownloadSpeedStantdard = false;
         school.timestamp = now;
 
         emit SchoolRegistry(
@@ -42,8 +40,6 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
             school.schoolName, 
             school.uploadSpeedStantdard, 
             school.downloadSpeedStantdard,
-            school.isReachUploadSpeedStantdard,
-            school.isReachDownloadSpeedStantdard,
             school.timestamp
         );
 
@@ -54,8 +50,6 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
             school.schoolName, 
             school.uploadSpeedStantdard, 
             school.downloadSpeedStantdard,
-            school.isReachUploadSpeedStantdard,
-            school.isReachDownloadSpeedStantdard,
             school.timestamp
         );
     }
