@@ -16,10 +16,27 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
      ***/
     function currentRightOfIsp(
         uint _schoolId
-    ) public view returns (string memory, string memory, address, uint, uint)
+    ) 
+        public 
+        view 
+        returns (
+            uint id,
+            string memory countryName, 
+            string memory schoolName, 
+            address IspAddr, 
+            uint uploadSpeedStantdard, 
+            uint downloadSpeedStantdard
+        )
     {
         School memory school = schools[_schoolId];
-        return (school.countryName, school.schoolName, school.IspAddr, school.uploadSpeedStantdard, school.downloadSpeedStantdard); 
+        return (
+            school.id,
+            school.countryName, 
+            school.schoolName, 
+            school.IspAddr, 
+            school.uploadSpeedStantdard, 
+            school.downloadSpeedStantdard
+        ); 
     }
     
 
