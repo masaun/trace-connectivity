@@ -4,12 +4,11 @@ pragma solidity ^0.5.0;
 contract TcEvents {
 
     event SchoolRegistry (
-        string countryName,
+        uint id,
         string schoolName,
+        string countryName,
         uint uploadSpeedStantdard,
         uint downloadSpeedStantdard,
-        bool isReachUploadSpeedStantdard,
-        bool isReachDownloadSpeedStantdard,
         uint timestamp
     );
 
@@ -30,8 +29,6 @@ contract TcEvents {
     event UpdateConnectivityData(
         //address schoolAddr,
         string schoolName,
-        uint uploadSpeedCurrently,
-        uint downloadSpeedCurrently,
         uint timestamp
     );
 

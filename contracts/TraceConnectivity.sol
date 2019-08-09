@@ -16,10 +16,27 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
      ***/
     function currentRightOfIsp(
         uint _schoolId
-    ) public view returns (string memory, string memory, address, uint, uint)
+    ) 
+        public 
+        view
+        returns (
+            uint id,
+            string memory countryName, 
+            string memory schoolName, 
+            address IspAddr, 
+            uint uploadSpeedStantdard, 
+            uint downloadSpeedStantdard
+        )
     {
         School memory school = schools[_schoolId];
-        return (school.countryName, school.schoolName, school.IspAddr, school.uploadSpeedStantdard, school.downloadSpeedStantdard); 
+        return (
+            school.id,
+            school.countryName, 
+            school.schoolName,
+            school.IspAddr,
+            school.uploadSpeedStantdard,
+            school.downloadSpeedStantdard
+        ); 
     }
     
 
@@ -56,27 +73,21 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
     function updateConnectivityData(
         uint _schoolId,
         //address _schoolAddr,
-        string memory _schoolName,
-        uint _uploadSpeedCurrently,
-        uint _downloadSpeedCurrently
-    ) public returns (string memory, uint, uint, uint) 
+        string memory _schoolName
+    ) public returns (string memory, uint) 
     {
         // In progress
         School memory school = schools[_schoolId];
         school.schoolName = _schoolName;
-        school.uploadSpeedCurrently = _uploadSpeedCurrently;
-        school.downloadSpeedCurrently = _downloadSpeedCurrently;
         school.timestamp = now;
 
         emit UpdateConnectivityData(
             //address schoolAddr,
             school.schoolName,
-            school.uploadSpeedCurrently,
-            school.downloadSpeedCurrently,
             school.timestamp
         );
 
-        return (school.schoolName, school.uploadSpeedCurrently, school.downloadSpeedCurrently, school.timestamp);
+        return (school.schoolName, school.timestamp);
     }
 
 

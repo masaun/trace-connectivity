@@ -11,7 +11,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     uint public donorId;
 
     constructor() public {
-        schoolId = 1; // District's ID is started count from 1
+        schoolId = 1;   // District's ID is started count from 1
         ispId = 1;      // ISP's ID is started count from 1
         donorId = 1;    // Donor's ID is started count from 1
     }
@@ -19,45 +19,42 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
 
 
     function schoolRegistry(
-        string memory _countryName,
         string memory _schoolName,
+        string memory _countryName,
         uint _uploadSpeedStantdard,
         uint _downloadSpeedStantdard
-    ) public returns (string memory, string memory, uint, uint, bool, bool, uint)
+    ) public returns (uint, string memory, string memory, uint, uint, uint)
     {
         uint _id;
         _id = schoolId;
 
         School storage school = schools[_id];
-        school.countryName = _countryName;
+        school.id = _id;
         school.schoolName = _schoolName;
+        school.countryName = _countryName;
         school.uploadSpeedStantdard = _uploadSpeedStantdard;
         school.downloadSpeedStantdard = _downloadSpeedStantdard;
-        school.isReachUploadSpeedStantdard = false;
-        school.isReachDownloadSpeedStantdard = false;
         school.timestamp = now;
 
         emit SchoolRegistry(
+            school.id,
+            school.schoolName,
             school.countryName,
-            school.schoolName, 
             school.uploadSpeedStantdard, 
             school.downloadSpeedStantdard,
-            school.isReachUploadSpeedStantdard,
-            school.isReachDownloadSpeedStantdard,
+            school.timestamp
+        );
+
+        return (
+            school.id,
+            school.schoolName,
+            school.countryName,
+            school.uploadSpeedStantdard, 
+            school.downloadSpeedStantdard,
             school.timestamp
         );
 
         schoolId++;
-
-        return (
-            school.countryName,
-            school.schoolName, 
-            school.uploadSpeedStantdard, 
-            school.downloadSpeedStantdard,
-            school.isReachUploadSpeedStantdard,
-            school.isReachDownloadSpeedStantdard,
-            school.timestamp
-        );
     }
     
 

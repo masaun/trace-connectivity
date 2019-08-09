@@ -10,13 +10,6 @@ const Header = () => (
       </div>
       <ul>
         <li><a href="/" className={styles.link}> Home</a></li>
-        {process.env.NODE_ENV !== 'asset' && (
-          <li><a href="/asset" className={styles.link}> Asset</a></li>
-        )}
-
-        {process.env.NODE_ENV !== 'exchange' && (
-          <li><a href="/exchange" className={styles.link}> Exchange</a></li>
-        )}
 
         {process.env.NODE_ENV !== 'registry' && (
           <li><a href="/registry" className={styles.link}> Registry</a></li>

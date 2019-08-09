@@ -11,6 +11,7 @@ import "./TcEvents.sol";
 contract TcStorage is TcObjects, TcEvents, Ownable {
 
     mapping (uint => School) schools;
+    //SchoolList[] public schoolLists;
 
     mapping (uint => Isp) isps;
     
