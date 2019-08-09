@@ -128,6 +128,20 @@ class App extends Component {
       valueOfUploadSpeedStantdard: '',
       valueOfDownloadSpeedStantdard: ''
     });
+
+    ///// Add value above to SchpplList
+    this.state.schoolList.push({
+      countryName: _countryName, 
+      schoolName: _schoolName, 
+      uploadSpeedStantdard: _uploadSpeedStantdard,
+      downloadSpeedStantdard: _downloadSpeedStantdard
+    });
+
+    this.setState({
+      schoolList: this.state.schoolList
+    });
+
+    console.log('=== schoolList ===', this.state.schoolList);  // Debug
   }
 
 
@@ -141,7 +155,9 @@ class App extends Component {
     const _schoolId = valueOfSchoolId;
     
     const response = await trace_connectivity.methods.currentRightOfIsp(_schoolId).call();
-        console.log('=== response of currentRightOfIsp function ===', response);
+    
+    console.log('=== response of currentRightOfIsp function ===', response);
+    console.log('=== schoolList ===', this.state.schoolList);
   }
 
 
