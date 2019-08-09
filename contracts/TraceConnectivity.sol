@@ -18,7 +18,7 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         uint _schoolId
     ) 
         public 
-        view 
+        view
         returns (
             uint id,
             string memory countryName, 
@@ -32,9 +32,9 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         return (
             school.id,
             school.countryName, 
-            school.schoolName, 
-            school.IspAddr, 
-            school.uploadSpeedStantdard, 
+            school.schoolName,
+            school.IspAddr,
+            school.uploadSpeedStantdard,
             school.downloadSpeedStantdard
         ); 
     }

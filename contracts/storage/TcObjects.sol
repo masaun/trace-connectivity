@@ -3,6 +3,10 @@ pragma solidity ^0.5.0;
 
 contract TcObjects {
 
+    // struct SchoolList {
+    //     mapping (uint => School) schools;
+    // }
+
     struct School {
         uint id;
         string countryName;     // Name of country
@@ -10,10 +14,8 @@ contract TcObjects {
         address IspAddr;        // Current ISP address which provide connectivity at the moment
         uint uploadSpeedStantdard;
         uint downloadSpeedStantdard;
-
         uint timestamp;
     }
-
 
     struct Isp {
         string name;

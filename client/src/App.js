@@ -157,7 +157,22 @@ class App extends Component {
     const response = await trace_connectivity.methods.currentRightOfIsp(_schoolId).call();
     
     console.log('=== response of currentRightOfIsp function ===', response);
-    console.log('=== schoolList ===', this.state.schoolList);
+
+    const schoolId = response.id
+    const schoolName = response.schoolName
+    const countryName = response.countryName
+    const ispAddr = response.IspAddr
+    const uploadSpeedStantdard = response.uploadSpeedStantdard
+    const downloadSpeedStantdard = response.downloadSpeedStantdard
+
+    this.setState({
+      schoolId: schoolId,
+      schoolName: schoolName,
+      countryName: countryName,
+      ispAddr: ispAddr,
+      uploadSpeedStantdard: uploadSpeedStantdard,
+      downloadSpeedStantdard: downloadSpeedStantdard,
+    }); 
   }
 
 
@@ -173,7 +188,7 @@ class App extends Component {
     const _newIspAddr = '0xc3871a0d61809e072e296b86bfd29f75abb93ad2'
     const _schoolId = 1
 
-    const realTimeData = {
+    const realTimeData = {      
       uploadSpeedCurrently: 100,
       downloadSpeedCurrently: 100,
       timestamp: 15440340
@@ -492,7 +507,7 @@ class App extends Component {
   }
 
   renderSchoolConnectivity() {
-    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList } = this.state;
+    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
 
     const dataUploadSpeed = [
       { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
@@ -534,30 +549,44 @@ class App extends Component {
               <br />
 
               <Button onClick={this.sendSchoolDetail}>Search School Detail</Button>
-            </Card>
-          </div>
 
-          <div className={styles.widgets}>
-            <Card width={'350px'} bg="primary">
-              <h2>Status of specific school connectivity</h2>
-              <p>Country name</p>
-
-              <p>School name</p>
-
-              <p>Assigned ISP name (currently)</p>
+              <span style={{ padding: "20px" }}></span>
 
               <hr />
 
+              <h2>Status of specific school connectivity</h2>
+              <p>Country name</p>
+              { countryName }
+
+              <p>School name</p>
+              { schoolName }
+
+              <p>Assigned ISP name (currently)</p>
+              <hr />
+
               <p>Stantdard value of upload speed</p>
+              { uploadSpeedStantdard }
 
               <p>Current value of upload speed</p>
+              { uploadSpeedCurrently }
 
               <hr />
  
               <p>Stantdard value of download speed</p>
+              { downloadSpeedStantdard }
 
               <p>Current value of download speed</p>
+              { downloadSpeedCurrently }
 
+              {this.state.schoolList.map( (schoolList, i) => {
+                return <div key={i}>
+                         <p>{ schoolList }</p>
+                         <p>{ schoolList.schoolName }</p>
+                         <p>{ schoolList.countryName }</p>
+                         <p>{ schoolList.uploadSpeedStantdard }</p>
+                         <p>{ schoolList.downloadSpeedStantdard }</p>
+                       </div>
+              })}
             </Card>
 
             <Card width={'400px'} bg="primary">
