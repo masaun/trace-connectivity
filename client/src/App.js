@@ -27,6 +27,16 @@ class App extends Component {
       accounts: null,
       route: window.location.pathname.replace("/",""),
 
+      /////// School Registry
+      countryName: '', 
+      schoolName: '', 
+      uploadSpeedStantdard: '',
+      downloadSpeedStantdard: '',
+      valueOfCountryName: '', 
+      valueOfSchoolName: '', 
+      valueOfUploadSpeedStantdard: '',
+      valueOfDownloadSpeedStantdard: '',
+
       /////// SchoolId search
       valueOfSchoolId: 0,
 
@@ -36,11 +46,18 @@ class App extends Component {
       timestamp: 0,
 
       realTimeDataList: [],
+      schoolList:[]
     };
 
     this.handleInputIspName = this.handleInputIspName.bind(this);
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
+
+    this.handleInputCountryName = this.handleInputCountryName.bind(this);
+    this.handleInputSchoolName = this.handleInputSchoolName.bind(this);
+    this.handleInputUploadSpeedStantdard = this.handleInputUploadSpeedStantdard.bind(this);
+    this.handleInputDownloadSpeedStantdard = this.handleInputDownloadSpeedStantdard.bind(this);
+    this.sendSchoolRegister = this.sendSchoolRegister.bind(this);
 
     this.handleInputSchoolId = this.handleInputSchoolId.bind(this);
     this.sendSchoolDetail = this.sendSchoolDetail.bind(this);
@@ -69,6 +86,47 @@ class App extends Component {
       isp_address: valueOfIspAddress, 
       valueOfIspName: '', 
       valueOfIspAddress: '', 
+    });
+  }
+
+
+  ///////--------------------- School Registry ---------------------------
+  handleInputCountryName({ target: { value } }) {
+    this.setState({ valueOfCountryName: value });
+  }
+
+  handleInputSchoolName({ target: { value } }) {
+    this.setState({ valueOfSchoolName: value });
+  }
+
+  handleInputUploadSpeedStantdard({ target: { value } }) {
+    this.setState({ valueOfUploadSpeedStantdard: Number(value) });
+  }
+
+  handleInputDownloadSpeedStantdard({ target: { value } }) {
+    this.setState({ valueOfDownloadSpeedStantdard: Number(value) });
+  }
+
+  sendSchoolRegister = async (event) => {
+    const { accounts, trace_connectivity, valueOfCountryName, valueOfSchoolName, valueOfUploadSpeedStantdard, valueOfDownloadSpeedStantdard } = this.state;
+
+    const _countryName = valueOfCountryName
+    const _schoolName = valueOfSchoolName
+    const _uploadSpeedStantdard = valueOfUploadSpeedStantdard
+    const _downloadSpeedStantdard = valueOfDownloadSpeedStantdard
+
+    const response = await trace_connectivity.methods.schoolRegistry(_countryName, _schoolName, _uploadSpeedStantdard, _downloadSpeedStantdard).send({ from: accounts[0] })
+    console.log('=== response of schoolRegistry function ===', response);  // Debug
+
+    this.setState({
+      countryName: _countryName, 
+      schoolName: _schoolName, 
+      uploadSpeedStantdard: _uploadSpeedStantdard,
+      downloadSpeedStantdard: _downloadSpeedStantdard,
+      valueOfCountryName: '', 
+      valueOfSchoolName: '', 
+      valueOfUploadSpeedStantdard: '',
+      valueOfDownloadSpeedStantdard: ''
     });
   }
 
@@ -388,27 +446,27 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <h1>This page can register specific school</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>School Registry</h2>
               <p>Country name</p>
-              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+              <Input type="text" value={this.state.valueOfCountryName} onChange={this.handleInputCountryName} />
 
               <p>School name</p>
-              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+              <Input type="text" value={this.state.valueOfSchoolName} onChange={this.handleInputSchoolName} />
 
               <p>Stantdard value of upload speed</p>
-              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+              <Input type="text" value={this.state.valueOfUploadSpeedStantdard} onChange={this.handleInputUploadSpeedStantdard} />
 
               <p>Stantdard value of download speed</p>
-              <Input type="text" value={this.state.valueOfIspName} onChange={this.handleInputIspName} />
+              <Input type="text" value={this.state.valueOfDownloadSpeedStantdard} onChange={this.handleInputDownloadSpeedStantdard} />
 
               <br />
               
-              <Button onClick={this.sendIspRegister}>School Register</Button>
+              <Button onClick={this.sendSchoolRegister}>School Register</Button>
             </Card>
           </div>
         </div>
@@ -418,6 +476,8 @@ class App extends Component {
   }
 
   renderSchoolConnectivity() {
+    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList } = this.state;
+
     const dataUploadSpeed = [
       { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
       { name: '8/8', uploadSpeedStandard: 10, uploadSpeedCurrently: 13 },
