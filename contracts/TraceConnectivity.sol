@@ -23,7 +23,7 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
             uint id,
             string memory countryName, 
             string memory schoolName, 
-            address IspAddr, 
+            address ispAddr, 
             uint uploadSpeedStantdard, 
             uint downloadSpeedStantdard
         )
@@ -33,7 +33,7 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
             school.id,
             school.countryName, 
             school.schoolName,
-            school.IspAddr,
+            school.ispAddr,
             school.uploadSpeedStantdard,
             school.downloadSpeedStantdard
         ); 
@@ -59,11 +59,11 @@ contract TraceConnectivity is TcStorage, TcOwnable, TraceConnectivityRegistry, T
         newIsp.rightAsIsp = true;      // Change right of new ISP
 
         School storage school = schools[_schoolId];
-        school.IspAddr = _newIspAddr;  // Change right of ISP which provide connectivity
+        school.ispAddr = _newIspAddr;  // Change right of ISP which provide connectivity
 
-        emit TransferRightOfIsp(_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.IspAddr);
+        emit TransferRightOfIsp(_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.ispAddr);
 
-        return (_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.IspAddr);
+        return (_oldIspId, oldIsp.rightAsIsp, _newIspId, newIsp.rightAsIsp, _schoolId, school.ispAddr);
     }
 
 

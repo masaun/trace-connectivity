@@ -29,11 +29,12 @@ class App extends Component {
 
       /////// School Registry
       countryName: '', 
-      schoolName: '', 
+      schoolName: '',
+      ispAddr: '',
       uploadSpeedStantdard: '',
       downloadSpeedStantdard: '',
       valueOfCountryName: '', 
-      valueOfSchoolName: '', 
+      valueOfSchoolName: '',
       valueOfUploadSpeedStantdard: '',
       valueOfDownloadSpeedStantdard: '',
 
@@ -46,15 +47,16 @@ class App extends Component {
       timestamp: 0,
 
       realTimeDataList: [],
-      schoolList:[]
+      schoolList: []
     };
 
     this.handleInputIspName = this.handleInputIspName.bind(this);
     this.handleInputIspAddress = this.handleInputIspAddress.bind(this);
     this.sendIspRegister = this.sendIspRegister.bind(this);
-
+    this.handleInputIspAddr = this.handleInputIspAddr.bind(this);
     this.handleInputCountryName = this.handleInputCountryName.bind(this);
     this.handleInputSchoolName = this.handleInputSchoolName.bind(this);
+
     this.handleInputUploadSpeedStantdard = this.handleInputUploadSpeedStantdard.bind(this);
     this.handleInputDownloadSpeedStantdard = this.handleInputDownloadSpeedStantdard.bind(this);
     this.sendSchoolRegister = this.sendSchoolRegister.bind(this);
@@ -99,6 +101,10 @@ class App extends Component {
     this.setState({ valueOfSchoolName: value });
   }
 
+  handleInputIspAddr({ target: { value } }) {
+    this.setState({ valueOfIspAddr: value });
+  }
+
   handleInputUploadSpeedStantdard({ target: { value } }) {
     this.setState({ valueOfUploadSpeedStantdard: Number(value) });
   }
@@ -108,23 +114,26 @@ class App extends Component {
   }
 
   sendSchoolRegister = async (event) => {
-    const { accounts, trace_connectivity, valueOfCountryName, valueOfSchoolName, valueOfUploadSpeedStantdard, valueOfDownloadSpeedStantdard } = this.state;
+    const { accounts, trace_connectivity, valueOfCountryName, valueOfSchoolName, valueOfIspAddr, valueOfUploadSpeedStantdard, valueOfDownloadSpeedStantdard } = this.state;
 
     const _countryName = valueOfCountryName
     const _schoolName = valueOfSchoolName
+    const _ispAddr = valueOfIspAddr
     const _uploadSpeedStantdard = valueOfUploadSpeedStantdard
     const _downloadSpeedStantdard = valueOfDownloadSpeedStantdard
 
-    const response = await trace_connectivity.methods.schoolRegistry(_countryName, _schoolName, _uploadSpeedStantdard, _downloadSpeedStantdard).send({ from: accounts[0] })
+    const response = await trace_connectivity.methods.schoolRegistry(_countryName, _schoolName, _ispAddr, _uploadSpeedStantdard, _downloadSpeedStantdard).send({ from: accounts[0] })
     console.log('=== response of schoolRegistry function ===', response);  // Debug
 
     this.setState({
       countryName: _countryName, 
-      schoolName: _schoolName, 
+      schoolName: _schoolName,
+      ispAddr: _ispAddr,
       uploadSpeedStantdard: _uploadSpeedStantdard,
       downloadSpeedStantdard: _downloadSpeedStantdard,
       valueOfCountryName: '', 
-      valueOfSchoolName: '', 
+      valueOfSchoolName: '',
+      valueOfIspAddr: '',
       valueOfUploadSpeedStantdard: '',
       valueOfDownloadSpeedStantdard: ''
     });
@@ -132,7 +141,8 @@ class App extends Component {
     ///// Add value above to SchpplList
     this.state.schoolList.push({
       countryName: _countryName, 
-      schoolName: _schoolName, 
+      schoolName: _schoolName,
+      ispAddr: _ispAddr,
       uploadSpeedStantdard: _uploadSpeedStantdard,
       downloadSpeedStantdard: _downloadSpeedStantdard
     });
@@ -489,6 +499,9 @@ class App extends Component {
               <p>School name</p>
               <Input type="text" value={this.state.valueOfSchoolName} onChange={this.handleInputSchoolName} />
 
+              <p>Assign address of ISP (which this school want to give right of providing connectivity)</p>
+              <Input type="text" value={this.state.valueOfIspAddr} onChange={this.handleInputIspAddr} />
+
               <p>Stantdard value of upload speed</p>
               <Input type="text" value={this.state.valueOfUploadSpeedStantdard} onChange={this.handleInputUploadSpeedStantdard} />
 
@@ -535,8 +548,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.asset && (
         <div className={styles.contracts}>
-          <h1>This page can see status of connectivity depends on school</h1>
-
           <Card width={'350px'} bg="primary">
             <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
           </Card>
@@ -562,6 +573,8 @@ class App extends Component {
               { schoolName }
 
               <p>Assigned ISP name (currently)</p>
+              { ispAddr }
+
               <hr />
 
               <p>Stantdard value of upload speed</p>
@@ -577,16 +590,6 @@ class App extends Component {
 
               <p>Current value of download speed</p>
               { downloadSpeedCurrently }
-
-              {this.state.schoolList.map( (schoolList, i) => {
-                return <div key={i}>
-                         <p>{ schoolList }</p>
-                         <p>{ schoolList.schoolName }</p>
-                         <p>{ schoolList.countryName }</p>
-                         <p>{ schoolList.uploadSpeedStantdard }</p>
-                         <p>{ schoolList.downloadSpeedStantdard }</p>
-                       </div>
-              })}
             </Card>
 
             <Card width={'400px'} bg="primary">

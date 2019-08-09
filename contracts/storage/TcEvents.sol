@@ -7,6 +7,7 @@ contract TcEvents {
         uint id,
         string schoolName,
         string countryName,
+        address ispAddr,
         uint uploadSpeedStantdard,
         uint downloadSpeedStantdard,
         uint timestamp
