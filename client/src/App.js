@@ -171,7 +171,7 @@ class App extends Component {
     const schoolId = response.id
     const schoolName = response.schoolName
     const countryName = response.countryName
-    const ispAddr = response.IspAddr
+    const ispAddr = response.ispAddr
     const uploadSpeedStantdard = response.uploadSpeedStantdard
     const downloadSpeedStantdard = response.downloadSpeedStantdard
 
@@ -572,7 +572,7 @@ class App extends Component {
               <p>School name</p>
               { schoolName }
 
-              <p>Assigned ISP name (currently)</p>
+              <p>Assigned ISP address (currently)</p>
               { ispAddr }
 
               <hr />
