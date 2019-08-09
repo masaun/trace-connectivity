@@ -4,8 +4,9 @@ pragma solidity ^0.5.0;
 contract TcEvents {
 
     event SchoolRegistry (
-        string countryName,
+        uint id,
         string schoolName,
+        string countryName,
         uint uploadSpeedStantdard,
         uint downloadSpeedStantdard,
         uint timestamp

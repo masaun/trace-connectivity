@@ -4,6 +4,7 @@ pragma solidity ^0.5.0;
 contract TcObjects {
 
     struct School {
+        uint id;
         string countryName;     // Name of country
         string schoolName;    // Name of district
         address IspAddr;        // Current ISP address which provide connectivity at the moment
