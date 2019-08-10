@@ -21,9 +21,10 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
     function schoolRegistry(
         string memory _schoolName,
         string memory _countryName,
+        address _ispAddr,  // This ISP has right which can provide connectivity 
         uint _uploadSpeedStantdard,
         uint _downloadSpeedStantdard
-    ) public returns (uint, string memory, string memory, uint, uint, uint)
+    ) public returns (uint, string memory, string memory, address, uint, uint, uint)
     {
         uint _id;
         _id = schoolId;
@@ -32,6 +33,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
         school.id = _id;
         school.schoolName = _schoolName;
         school.countryName = _countryName;
+        school.ispAddr = _ispAddr;
         school.uploadSpeedStantdard = _uploadSpeedStantdard;
         school.downloadSpeedStantdard = _downloadSpeedStantdard;
         school.timestamp = now;
@@ -40,6 +42,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
             school.id,
             school.schoolName,
             school.countryName,
+            school.ispAddr,
             school.uploadSpeedStantdard, 
             school.downloadSpeedStantdard,
             school.timestamp
@@ -49,6 +52,7 @@ contract TraceConnectivityRegistry is TcStorage, TcOwnable {
             school.id,
             school.schoolName,
             school.countryName,
+            school.ispAddr,
             school.uploadSpeedStantdard, 
             school.downloadSpeedStantdard,
             school.timestamp

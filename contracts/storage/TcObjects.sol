@@ -11,7 +11,7 @@ contract TcObjects {
         uint id;
         string countryName;     // Name of country
         string schoolName;    // Name of district
-        address IspAddr;        // Current ISP address which provide connectivity at the moment
+        address ispAddr;        // Current ISP address which provide connectivity at the moment
         uint uploadSpeedStantdard;
         uint downloadSpeedStantdard;
         uint timestamp;

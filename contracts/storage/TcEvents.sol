@@ -7,6 +7,7 @@ contract TcEvents {
         uint id,
         string schoolName,
         string countryName,
+        address ispAddr,
         uint uploadSpeedStantdard,
         uint downloadSpeedStantdard,
         uint timestamp
@@ -39,12 +40,17 @@ contract TcEvents {
     );
 
     event TransferRightOfIsp(
-        uint _oldIspId,
-        bool _oldIspRightAsIsp,
-        uint _newIspId,
-        bool _newIspRightAsIsp,
-        uint _schoolId,
-        address _newIspAddr
+        uint oldIspId,
+        bool oldIspRightAsIsp,
+        uint newIspId,
+        bool newIspRightAsIsp,
+        uint schoolId,
+        address newIspAddr
     );
-    
+
+    event TransferRewardToIsp(
+        address ispAddr,
+        uint rewardAmount,
+        uint fundTotalAmount
+    );
 }
