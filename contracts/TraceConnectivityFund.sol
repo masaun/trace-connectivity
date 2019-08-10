@@ -14,6 +14,9 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
     constructor() public {}
 
 
+    /**
+    * @dev Fund（Deposit）from donor.
+    */
     function fundFromDonor(
         address _donorAddr,
         uint _fundAmountFromDonor
@@ -40,4 +43,27 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
             fund.fundTotalAmount
         );
     }
+
+
+    /**
+    * @dev If ISP who has right of providing connectivty satisfy the condition of connectivity, this function transfer rewards to ISP by using funded amount.
+    */
+    function transferRewardToIsp(
+        address payable _ispAddr,
+        uint _rewardAmount
+    )  
+        public
+        payable
+        returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
+    {
+        Fund storage fund = funds[_ispAddr]; 
+        fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
+
+        _ispAddr.transfer(_rewardAmount);
+
+        emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
+
+        return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
+    }
+    
 }

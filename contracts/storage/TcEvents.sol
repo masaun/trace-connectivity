@@ -47,5 +47,10 @@ contract TcEvents {
         uint _schoolId,
         address _newIspAddr
     );
-    
+
+    event TransferRewardToIsp(
+        address ispAddr,
+        uint rewardAmount,
+        uint fundTotalAmount
+    );
 }
