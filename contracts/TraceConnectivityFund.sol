@@ -26,7 +26,7 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         payable
         returns (address, uint, uint)
     {
-        address _fundAddr = address(this);
+        address _fundAddr = address(this);  // Assign this contract address
 
         Fund storage fund = funds[_fundAddr];
         fund.donorAddr = _donorAddr;
@@ -58,7 +58,7 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         payable
         returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
     {
-        address _fundAddr = address(this);
+        address _fundAddr = address(this);  // Assign this contract address
 
         Fund storage fund = funds[_fundAddr]; 
         fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
