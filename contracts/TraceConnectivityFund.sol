@@ -1,13 +1,14 @@
 pragma solidity >=0.4.22 <0.6.0;
 
 import "./openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "./openzeppelin-solidity/contracts/payment/escrow/Escrow.sol";
 import "./storage/TcStorage.sol";
 import "./modifiers/TcOwnable.sol";
 import "./TraceConnectivityRegistry.sol";
 
 
 /* dev Donors donate in this contract */ 
-contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistry {
+contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistry, Escrow {
 
     using SafeMath for uint256;
 
@@ -56,18 +57,21 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
     )  
         public
         payable
-        returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
+        //returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
     {
-        address _fundAddr = address(this);  // Assign this contract address
+        //address _fundAddr = address(this);  // Assign this contract address
 
-        Fund storage fund = funds[_fundAddr]; 
-        fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
+        //Fund storage fund = funds[_fundAddr]; 
+        //fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
 
-        _ispAddr.transfer(_rewardAmount);
+        //_ispAddr.transfer(_rewardAmount);
 
-        emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        //emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
 
-        return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        //return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
+
+
+        withdraw(_ispAddr);
     }
     
 }

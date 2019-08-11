@@ -8,7 +8,7 @@ import Web3Info from "./components/Web3Info/index.js";
 import { Loader, Button, Card, Input, Heading, Table, Form } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
-import { LineChart, Line, XAxis, YAxis, BarChart, Bar, PieChart, Pie, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { moment } from 'moment'
 
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
@@ -207,8 +207,13 @@ class App extends Component {
     const standardValueOfUploadSpeed = 90
     const standardValueOfDownloadSpeed = 110
 
+    const _ispAddr = '0xad01f6bc58d9b6e3a9d15581802af3b04d7f3a27'
+    const _rewardAmount = 10000
+
+
     if (realTimeData['uploadSpeedCurrently'] > standardValueOfUploadSpeed) {
       console.log('======= Satisfy standard value of upload speed ======')  // OK
+      const response = await trace_connectivity.methods.transferRewardToIsp(_ispAddr, _rewardAmount).send({ from: accounts[0] })
     } else {
       console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
       const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
@@ -216,6 +221,7 @@ class App extends Component {
 
     if (realTimeData['downloadSpeedCurrently'] > standardValueOfDownloadSpeed) {
       console.log('======= Satisfy standard value of download speed ======')  // OK
+      const response = await trace_connectivity.methods.transferRewardToIsp(_ispAddr, _rewardAmount).send({ from: accounts[0] })
     } else {
       console.log('======= Does not Satisfy standard value of download speed ======')  // OK
       const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })
