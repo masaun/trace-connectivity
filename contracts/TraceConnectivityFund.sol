@@ -57,7 +57,7 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
     )  
         public
         payable
-        returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
+        returns (address ispAddr, uint rewardAmount, uint fundTotalAmount, uint ispBalance)
     {
         address _fundAddr = address(this);  // Assign this contract address
 
@@ -65,12 +65,16 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
 
         /* Fail */
+        Isp storage isp = isps[0];
+        isp.balance = isp.balance.add(_rewardAmount);
+
+        //_ispAddr.transfer(msg.value);
         //_ispAddr.transfer(_rewardAmount);
 
         //emit TransferRewardToIsp(_ispAddr, _rewardAmount, address(this).balance);
-        emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount, isp.balance);
 
-        return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        return (_ispAddr, _rewardAmount, fund.fundTotalAmount, isp.balance);
 
 
         /* Success */ 
