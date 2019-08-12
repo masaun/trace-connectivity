@@ -51,6 +51,7 @@ contract TcEvents {
     event TransferRewardToIsp(
         address ispAddr,
         uint rewardAmount,
-        uint fundTotalAmount
+        uint fundTotalAmount,
+        uint ispBalance
     );
 }
