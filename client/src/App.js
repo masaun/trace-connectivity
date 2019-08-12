@@ -208,12 +208,20 @@ class App extends Component {
     const standardValueOfDownloadSpeed = 110
 
     const _ispAddr = '0xad01f6bc58d9b6e3a9d15581802af3b04d7f3a27'
-    const _rewardAmount = 10000
+    const _rewardAmount = 10
+
+
+    // Deposit（Test）
+    const _donorAddr = '0x7b58c78ece714eb7383345ce09e82149af2056f4'
+    const _donateAmount = 10000000
+    const res = await trace_connectivity.methods.fundFromDonor(_donorAddr, _donateAmount).send({ from: accounts[0] })
+      console.log('=== response of fundFromDonor function ===', res);  // Debug
 
 
     if (realTimeData['uploadSpeedCurrently'] > standardValueOfUploadSpeed) {
       console.log('======= Satisfy standard value of upload speed ======')  // OK
       const response = await trace_connectivity.methods.transferRewardToIsp(_ispAddr, _rewardAmount).send({ from: accounts[0] })
+      console.log('=== response of transferRewardToIsp function ===', response);  // Debug
     } else {
       console.log('======= Does not Satisfy standard value of upload speed ======')  // OK
       const response = await trace_connectivity.methods.transferRightOfIsp(_oldIspId, _newIspId, _newIspAddr, _schoolId).send({ from: accounts[0] })

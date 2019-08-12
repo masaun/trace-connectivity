@@ -57,21 +57,27 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
     )  
         public
         payable
-        //returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
+        returns (address ispAddr, uint rewardAmount, uint fundTotalAmount)
     {
-        //address _fundAddr = address(this);  // Assign this contract address
+        address _fundAddr = address(this);  // Assign this contract address
 
-        //Fund storage fund = funds[_fundAddr]; 
-        //fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
+        Fund storage fund = funds[_fundAddr];
+        fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
 
+        /* Fail */
         //_ispAddr.transfer(_rewardAmount);
 
-        //emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        //emit TransferRewardToIsp(_ispAddr, _rewardAmount, address(this).balance);
+        emit TransferRewardToIsp(_ispAddr, _rewardAmount, fund.fundTotalAmount);
 
-        //return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
+        return (_ispAddr, _rewardAmount, fund.fundTotalAmount);
 
 
-        withdraw(_ispAddr);
+        /* Success */ 
+        //withdraw(_ispAddr);  // [For test]： Reference from withdraw function in Escrow.sol
+
+
+        transferReward(_ispAddr, _rewardAmount);  // [For test]： Reference from withdraw function in Escrow.sol
     }
-    
+
 }
