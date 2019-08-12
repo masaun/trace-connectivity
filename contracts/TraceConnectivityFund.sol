@@ -64,8 +64,8 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         Fund storage fund = funds[_fundAddr];
         fund.fundTotalAmount = fund.fundTotalAmount.sub(_rewardAmount);
 
-        /* Fail */
-        Isp storage isp = isps[0];
+        /* Using code of this contract only */ 
+        Isp storage isp = isps[0]; // [Todo]：Change argument of index (gather struct of Isp)
         isp.balance = isp.balance.add(_rewardAmount);
 
         //_ispAddr.transfer(msg.value);
@@ -77,11 +77,10 @@ contract TraceConnectivityFund is TcStorage, TcOwnable, TraceConnectivityRegistr
         return (_ispAddr, _rewardAmount, fund.fundTotalAmount, isp.balance);
 
 
-        /* Success */ 
+        /* Using code of Escrow.sol */ 
         //withdraw(_ispAddr);  // [For test]： Reference from withdraw function in Escrow.sol
 
-
-        transferReward(_ispAddr, _rewardAmount);  // [For test]： Reference from withdraw function in Escrow.sol
+        //transferReward(_ispAddr, _rewardAmount);  // [For test]： Reference from withdraw function in Escrow.sol
     }
 
 }
