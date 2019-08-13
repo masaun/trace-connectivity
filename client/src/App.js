@@ -19,13 +19,11 @@ import styles from './App.module.scss';
 
 // Dash board
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/animate.min.css";
 import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
 import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
-
 import AdminLayout from "./layout/Admin.jsx";
 
 
@@ -409,7 +407,7 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
@@ -452,7 +450,7 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
@@ -611,7 +609,7 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/admin" render={props => <AdminLayout {...props} />} />
-              <Redirect from="/" to="/admin/dashboard" />
+              <Redirect from="/" to="/admin/dashboard/connectivity" />
             </Switch>
           </BrowserRouter>
 
