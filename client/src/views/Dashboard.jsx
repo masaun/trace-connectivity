@@ -101,15 +101,40 @@ class Dashboard extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Tasks"
-                category="Backend development"
+                title="Status of specific school connectivity"
+                category=""
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={
                   <div className="table-full-width">
-                    <table className="table">
-                      <Tasks />
-                    </table>
+                    <Table striped hover>
+                      <thead>
+                        <tr>
+                          {
+                            thArray.map((prop, key) => {
+                              return (
+                              <th key={key}>{prop}</th>
+                              );
+                            })
+                          }
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          tdArray.map((prop,key) => {
+                            return (
+                              <tr key={key}>{
+                                prop.map((prop,key)=> {
+                                  return (
+                                      <td key={key}>{prop}</td>
+                                  );
+                                })
+                              }</tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </Table>
                   </div>
                 }
               />
@@ -117,9 +142,9 @@ class Dashboard extends Component {
 
             <Col md={12}>
               <Card
-                title="Tasks"
-                category="Backend development"
-                stats="Updated 3 minutes ago"
+                title="Others"
+                category=""
+                stats=""
                 statsIcon="fa fa-history"
                 content={
                   <div className="table-full-width">
