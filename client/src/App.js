@@ -16,6 +16,18 @@ import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 import styles from './App.module.scss';
 
 
+
+// Dash board
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
+import "./assets/css/demo.css";
+import "./assets/css/pe-icon-7-stroke.css";
+import AdminLayout from "./layout/Admin.jsx";
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -275,16 +287,11 @@ class App extends Component {
 
   componentDidMount = async () => {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
-    let Asset = {};
-    let Exchange = {};
+ 
     let TraceConnectivity = {};
 
     try {
-      Asset = require("../../build/contracts/Asset.json");        // Load ABI of contract of Asset
-      Exchange = require("../../build/contracts/Exchange.json");  // Load ABI of contract of Exchange
       TraceConnectivity = require("../../build/contracts/TraceConnectivity.json");  // Load ABI of contract of TraceConnectivity
-      // Asset = require("../../contracts/Asset.sol");
-      // Exchange = require("../../contracts/Exchange.sol");
     } catch (e) {
       console.log(e);
     }
@@ -311,31 +318,9 @@ class App extends Component {
         let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]): web3.utils.toWei('0');
         balance = web3.utils.fromWei(balance, 'ether');
 
-        let instanceAsset = null;
-        let instanceExchange = null;
         let instanceTraceConnectivity = null;
         let deployedNetwork = null;
 
-        if (Asset.networks) {
-          deployedNetwork = Asset.networks[networkId.toString()];
-          if (deployedNetwork) {
-            instanceAsset = new web3.eth.Contract(
-              Asset.abi,
-              deployedNetwork && deployedNetwork.address,
-            );
-            console.log('=== instanceAsset ===', instanceAsset);
-          }
-        }
-        if (Exchange.networks) {
-          deployedNetwork = Exchange.networks[networkId.toString()];
-          if (deployedNetwork) {
-            instanceExchange = new web3.eth.Contract(
-              Exchange.abi,
-              deployedNetwork && deployedNetwork.address,
-            );
-            console.log('=== instanceExchange ===', instanceExchange);
-          }
-        }
         if (TraceConnectivity.networks) {
           deployedNetwork = TraceConnectivity.networks[networkId.toString()];
           if (deployedNetwork) {
@@ -347,14 +332,14 @@ class App extends Component {
           }
         }
 
-        if (instanceAsset || instanceExchange || instanceTraceConnectivity) {
+        if (instanceTraceConnectivity) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, asset: instanceAsset, exchange: instanceExchange, trace_connectivity: instanceTraceConnectivity }, () => {
-              this.refreshValues(instanceAsset, instanceExchange, instanceTraceConnectivity);
+            isMetaMask, trace_connectivity: instanceTraceConnectivity }, () => {
+              this.refreshValues(instanceTraceConnectivity);
               setInterval(() => {
-                this.refreshValues(instanceAsset, instanceExchange, instanceTraceConnectivity);
+                this.refreshValues(instanceTraceConnectivity);
               }, 5000);
             });
         }
@@ -377,13 +362,7 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceAsset, instanceExchange, instanceTraceConnectivity) => {
-    if (instanceAsset) {
-      console.log('refreshValues of instanceAsset');
-    }
-    if (instanceExchange) {
-      console.log('refreshValues of instanceExchange');
-    }
+  refreshValues = (instanceTraceConnectivity) => {
     if (instanceTraceConnectivity) {
       console.log('refreshValues of instanceTraceConnectivity');
     }
@@ -428,7 +407,7 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
@@ -471,7 +450,7 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
@@ -560,7 +539,7 @@ class App extends Component {
       {this.state.web3 && !this.state.trace_connectivity && (
         this.renderDeployCheck('trace_connectivity')
       )}
-      {this.state.web3 && this.state.asset && (
+      {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <Card width={'350px'} bg="primary">
             <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
@@ -626,6 +605,14 @@ class App extends Component {
               </ResponsiveContainer>
             </Card>
           </div>
+
+          <BrowserRouter>
+            <Switch>
+              <Route path="/admin" render={props => <AdminLayout {...props} />} />
+              <Redirect from="/" to="/admin/dashboard/connectivity" />
+            </Switch>
+          </BrowserRouter>
+
         </div>
       )}
       </div>
