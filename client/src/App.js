@@ -542,6 +542,13 @@ class App extends Component {
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
           <div className={styles.widgets}>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/admin" render={props => <AdminLayout {...props} />} />
+                <Redirect from="/" to="/admin/dashboard/connectivity" />
+              </Switch>   
+            </BrowserRouter>
+
             <Card width={'400px'} bg="primary">
 
               <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
@@ -609,13 +616,6 @@ class App extends Component {
               </ResponsiveContainer>
             </Card>
             */}
-
-            <BrowserRouter>
-              <Switch>
-                <Route path="/admin" render={props => <AdminLayout {...props} />} />
-                <Redirect from="/" to="/admin/dashboard/connectivity" />
-              </Switch>
-            </BrowserRouter>
 
           </div>
         </div>
