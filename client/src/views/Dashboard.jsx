@@ -57,11 +57,11 @@ class Dashboard extends Component {
           <Row>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={12}>
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Users Behavior"
+                title="Upload Speed"
                 category="24 Hours performance"
                 stats="Updated 3 minutes ago"
                 content={
@@ -79,11 +79,11 @@ class Dashboard extends Component {
                 }
               />
             </Col>
-            <Col md={6}>
+            <Col md={12}>
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Users Behavior"
+                title="Download Speed"
                 category="24 Hours performance"
                 stats="Updated 3 minutes ago"
                 content={
@@ -104,7 +104,7 @@ class Dashboard extends Component {
           </Row>
 
           <Row>
-            <Col md={6}>
+            <Col md={12}>
               <Card
                 id="chartActivity"
                 title="2014 Sales"
@@ -127,7 +127,7 @@ class Dashboard extends Component {
               />
             </Col>
 
-            <Col md={6}>
+            <Col md={12}>
               <Card
                 title="Tasks"
                 category="Backend development"
