@@ -23,16 +23,11 @@ import { Card } from "../components/Card/Card.jsx";
 import { StatsCard } from "../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../components/Tasks/Tasks.jsx";
 import {
-  //dataPie,
-  //legendPie,
-  dataSales,
+  dataSales1,
+  dataSales2,
   optionsSales,
   responsiveSales,
   legendSales,
-  //dataBar,
-  //optionsBar,
-  //responsiveBar,
-  //legendBar,
   thArray, 
   tdArray
 } from "../variables/Variables.jsx";
@@ -67,7 +62,7 @@ class Dashboard extends Component {
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataSales}
+                      data={dataSales1}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}
@@ -89,7 +84,7 @@ class Dashboard extends Component {
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataSales}
+                      data={dataSales2}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}

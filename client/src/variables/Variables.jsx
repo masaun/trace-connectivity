@@ -494,7 +494,7 @@ const iconsArray = [
 
 
 // Data for Line Chart
-var dataSales = {
+var dataSales1 = {
   labels: [
     "9:00AM",
     "12:00AM",
@@ -506,14 +506,35 @@ var dataSales = {
     "6:00AM"
   ],
   series: [
-    [287, 385, 490, 492, 554, 586, 698, 695],
-    [67, 152, 143, 240, 287, 335, 435, 437],
-    [23, 113, 67, 108, 190, 239, 307, 308]
+    [],
+    [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
+    [3.1, 3.3, 3.0, 3.1, 3.2, 2.7, 3.1, 2.5]
   ]
 };
+
+
+var dataSales2 = {
+  labels: [
+    "9:00AM",
+    "12:00AM",
+    "3:00PM",
+    "6:00PM",
+    "9:00PM",
+    "12:00PM",
+    "3:00AM",
+    "6:00AM"
+  ],
+  series: [
+    [],
+    [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
+    [3.3, 3.5, 3.0, 2.9, 2.5, 3.0, 2.7, 3.1]
+  ]
+};
+
+
 var optionsSales = {
   low: 0,
-  high: 800,
+  high: 4.0,
   showArea: false,
   height: "245px",
   axisX: {
@@ -550,7 +571,8 @@ module.exports = {
   thArray,
   tdArray, // For tables (TableList view)
   iconsArray, // For icons (Icons view)
-  dataSales,
+  dataSales1,
+  dataSales2,
   optionsSales,
   responsiveSales,
   legendSales,
