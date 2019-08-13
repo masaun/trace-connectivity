@@ -586,6 +586,7 @@ class App extends Component {
               { downloadSpeedCurrently }
             </Card>
 
+            {/*
             <Card width={'750px'} bg="primary">
               <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
                 <LineChart data={dataUploadSpeed}>
@@ -607,6 +608,7 @@ class App extends Component {
                 </LineChart>
               </ResponsiveContainer>
             </Card>
+            */}
 
             <BrowserRouter>
               <Switch>
@@ -614,7 +616,7 @@ class App extends Component {
                 <Redirect from="/" to="/admin/dashboard/connectivity" />
               </Switch>
             </BrowserRouter>
-            
+
           </div>
         </div>
       )}

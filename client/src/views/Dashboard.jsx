@@ -113,7 +113,7 @@ class Dashboard extends Component {
                           {
                             thArray.map((prop, key) => {
                               return (
-                              <th key={key}>{prop}</th>
+                                <th key={key}>{prop}</th>
                               );
                             })
                           }
@@ -126,7 +126,7 @@ class Dashboard extends Component {
                               <tr key={key}>{
                                 prop.map((prop,key)=> {
                                   return (
-                                      <td key={key}>{prop}</td>
+                                    <td key={key}>{prop}</td>
                                   );
                                 })
                               }</tr>
