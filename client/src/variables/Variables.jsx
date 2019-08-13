@@ -491,15 +491,7 @@ const iconsArray = [
 // // // // For dashboard's charts
 // //
 //
-// Data for Pie Chart
-var dataPie = {
-  labels: ["40%", "20%", "40%"],
-  series: [40, 20, 40]
-};
-var legendPie = {
-  names: ["Open", "Bounce", "Unsubscribe"],
-  types: ["info", "danger", "warning"]
-};
+
 
 // Data for Line Chart
 var dataSales = {
@@ -552,65 +544,14 @@ var legendSales = {
   types: ["info", "danger", "warning"]
 };
 
-// Data for Bar Chart
-var dataBar = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ],
-  series: [
-    [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-    [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
-  ]
-};
-var optionsBar = {
-  seriesBarDistance: 10,
-  axisX: {
-    showGrid: false
-  },
-  height: "245px"
-};
-var responsiveBar = [
-  [
-    "screen and (max-width: 640px)",
-    {
-      seriesBarDistance: 5,
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return value[0];
-        }
-      }
-    }
-  ]
-];
-var legendBar = {
-  names: ["Tesla Model S", "BMW 5 Series"],
-  types: ["info", "danger"]
-};
 
 module.exports = {
   style, // For notifications (App container and Notifications view)
   thArray,
   tdArray, // For tables (TableList view)
   iconsArray, // For icons (Icons view)
-  dataPie,
-  legendPie,
   dataSales,
   optionsSales,
   responsiveSales,
   legendSales,
-  dataBar,
-  optionsBar,
-  responsiveBar,
-  legendBar // For charts (Dashboard view)
 };
