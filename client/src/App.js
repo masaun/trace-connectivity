@@ -16,6 +16,20 @@ import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 import styles from './App.module.scss';
 
 
+
+// Dash board
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
+import "./assets/css/demo.css";
+import "./assets/css/pe-icon-7-stroke.css";
+
+import AdminLayout from "./layout/Admin.jsx";
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -593,6 +607,14 @@ class App extends Component {
               </ResponsiveContainer>
             </Card>
           </div>
+
+          <BrowserRouter>
+            <Switch>
+              <Route path="/admin" render={props => <AdminLayout {...props} />} />
+              <Redirect from="/" to="/admin/dashboard" />
+            </Switch>
+          </BrowserRouter>
+
         </div>
       )}
       </div>
