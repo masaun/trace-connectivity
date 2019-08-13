@@ -532,7 +532,7 @@ var optionsSales = {
   showPoint: true,
   fullWidth: true,
   chartPadding: {
-    right: 50
+    right: 0
   }
 };
 var responsiveSales = [

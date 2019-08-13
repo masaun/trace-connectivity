@@ -18,13 +18,13 @@ import styles from './App.module.scss';
 
 
 // Dash board
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/animate.min.css";
-import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
-import "./assets/css/demo.css";
-import "./assets/css/pe-icon-7-stroke.css";
-import AdminLayout from "./layout/Admin.jsx";
+// import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./assets/css/animate.min.css";
+// import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
+// import "./assets/css/demo.css";
+// import "./assets/css/pe-icon-7-stroke.css";
+// import AdminLayout from "./layout/Admin.jsx";
 
 
 
@@ -516,21 +516,21 @@ class App extends Component {
     const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
 
     const dataUploadSpeed = [
-      { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
-      { name: '8/8', uploadSpeedStandard: 10, uploadSpeedCurrently: 13 },
-      { name: '8/9', uploadSpeedStandard: 10, uploadSpeedCurrently: 19 },
-      { name: '8/10', uploadSpeedStandard: 10, uploadSpeedCurrently: 11 },
-      { name: '8/11', uploadSpeedStandard: 10, uploadSpeedCurrently: 9 },
-      { name: '8/12', uploadSpeedStandard: 10, uploadSpeedCurrently: 22 }
+      { name: '8/7', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.3 },
+      { name: '8/8', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.5 },
+      { name: '8/9', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 },
+      { name: '8/10', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.1 },
+      { name: '8/11', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.7 },
+      { name: '8/12', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 }
     ]
 
     const dataDownloadSpeed = [
-      { name: '8/7', downloadSpeedStandard: 15, downloadSpeedCurrently: 5 },
-      { name: '8/8', downloadSpeedStandard: 15, downloadSpeedCurrently: 3 },
-      { name: '8/9', downloadSpeedStandard: 15, downloadSpeedCurrently: 9 },
-      { name: '8/10', downloadSpeedStandard: 15, downloadSpeedCurrently: 10 },
-      { name: '8/11', downloadSpeedStandard: 15, downloadSpeedCurrently: 12 },
-      { name: '8/12', downloadSpeedStandard: 15, downloadSpeedCurrently: 13 }
+      { name: '8/7', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.1 },
+      { name: '8/8', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.1 },
+      { name: '8/9', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/10', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.3 },
+      { name: '8/11', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/12', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.8 }
     ]
 
     return (
@@ -541,12 +541,13 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <Card width={'350px'} bg="primary">
-            <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
-          </Card>
-
           <div className={styles.widgets}>
-            <Card width={'350px'} bg="primary">
+            <Card width={'400px'} bg="primary">
+
+              <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
+
+              <hr />
+
               <h2>School Id Search</h2>
               <Input type="text" value={this.state.valueOfSchoolId} onChange={this.handleInputSchoolId} />
 
@@ -585,7 +586,7 @@ class App extends Component {
               { downloadSpeedCurrently }
             </Card>
 
-            <Card width={'400px'} bg="primary">
+            <Card width={'750px'} bg="primary">
               <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
                 <LineChart data={dataUploadSpeed}>
                   <XAxis dataKey="name" />
@@ -594,6 +595,8 @@ class App extends Component {
                   <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
                 </LineChart>
               </ResponsiveContainer>
+
+              <br />
 
               <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
                 <LineChart data={dataDownloadSpeed}>
@@ -604,14 +607,9 @@ class App extends Component {
                 </LineChart>
               </ResponsiveContainer>
             </Card>
-          </div>
 
-          <BrowserRouter>
-            <Switch>
-              <Route path="/admin" render={props => <AdminLayout {...props} />} />
-              <Redirect from="/" to="/admin/dashboard/connectivity" />
-            </Switch>
-          </BrowserRouter>
+
+          </div>
 
         </div>
       )}
