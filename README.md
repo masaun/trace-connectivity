@@ -3,7 +3,8 @@
 ***
 
 ## 【Introduction of Trace Connectivity】
-- Trace Connectivity is DApp for providing connectivity (upload speed and download speed of internet) to school by using smart contract.
+- Trace Connectivity is DApp for controling right of provider depend on status of providing connectivity to school automatically by using smart contract.
+(Connectivity mean upload speed and donwload speed of internet)
 
 
 &nbsp;
@@ -28,6 +29,7 @@
 ***
 
 ##【Setup】
+
 ### Setup private network by using Ganache
 1. Download Ganache from link below
 https://www.trufflesuite.com/ganache  
@@ -91,7 +93,7 @@ http://127.0.0.1:3000
 4. Access to `http://127.0.0.1:3000/school_connectivity` and watch status of connectivity of being selected school
 - But, implemention of this page is in progress to integrate processing of getting real-time data of connectivity yet.
 - So that if you check transaction when get real-time data of school connectivity, you access to `http://127.0.0.1:3000/school_registry` and push button of "Get Real-Time Data".
-
+![スクリーンショット 2019-08-14 16 02 31](https://user-images.githubusercontent.com/19357502/63027351-173cf000-bead-11e9-981c-ff630d95841b.png)
 
 
 
