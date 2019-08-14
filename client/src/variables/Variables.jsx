@@ -276,7 +276,7 @@ const thArray = [
   "Current value of download spee"
 ];
 const tdArray = [
-  ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout", "$36,738", "$36,738"]
+  ["Kyrgyzstan", "A school", "0x41f40d339d0839571f50622fa27e89232ca808a8", "3.0", "2.5", "3.0", "3.1"],
 ];
 
 
