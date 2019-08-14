@@ -14,7 +14,7 @@
 
 ## 【How does smart contract work in this DApp?】
 1. School define stardard value of connectivity (upload speed and download speed).
-  (For exapmle, 3,0G)
+  (For exapmle, 2,0G , 3.0G, etc...)
 
 2. School assign ISP which has right of providing connectivity.
 
