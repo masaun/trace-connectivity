@@ -409,7 +409,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>ISP Registry</h2>
@@ -452,7 +451,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>Fund from donors</h2>

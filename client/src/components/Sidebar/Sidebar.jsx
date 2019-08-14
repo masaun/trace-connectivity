@@ -20,7 +20,7 @@ import { NavLink } from "react-router-dom";
 
 import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.jsx";
 
-import logo from "../../assets/img/reactlogo.png";
+//import logo from "../../assets/img/reactlogo.png";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -61,14 +61,14 @@ class Sidebar extends Component {
             className="simple-text logo-mini"
           >
             <div className="logo-img">
-              <img src={logo} alt="logo_image" />
+              {/* <img src={logo} alt="logo_image" /> */}
             </div>
           </a>
           <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
+            href="http://localhost:3000/admin/dashboard/connectivity"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            Trace Connectivity
           </a>
         </div>
         <div className="sidebar-wrapper">
