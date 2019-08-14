@@ -93,7 +93,9 @@ http://127.0.0.1:3000
 4. Access to `http://127.0.0.1:3000/school_connectivity` and watch status of connectivity of being selected school
 - But, implemention of this page is in progress to integrate processing of getting real-time data of connectivity yet.
 - So that if you check transaction when get real-time data of school connectivity, you access to `http://127.0.0.1:3000/school_registry` and push button of "Get Real-Time Data".
-![スクリーンショット 2019-08-14 16 02 31](https://user-images.githubusercontent.com/19357502/63027351-173cf000-bead-11e9-981c-ff630d95841b.png)
+- This is dashboard for monitoring connectivity below. (Only frontend. Integration of real-time data is in progress yet)
+![スクリーンショット 2019-08-14 16 06 25](https://user-images.githubusercontent.com/19357502/63027682-acd87f80-bead-11e9-99eb-a952f3ad4acc.png)
+![スクリーンショット 2019-08-14 16 07 18](https://user-images.githubusercontent.com/19357502/63027683-ad711600-bead-11e9-9a0a-43b0ed61a205.png)
 
 
 
