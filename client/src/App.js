@@ -400,7 +400,7 @@ class App extends Component {
     );
   }
 
-  renderRegistry() {
+  renderIspDonorRegistry() {
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
@@ -471,7 +471,7 @@ class App extends Component {
     );
   }
 
-  renderSchool() {
+  renderSchoolRegistry() {
     const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
 
     const dataUploadSpeed = [
@@ -716,9 +716,9 @@ class App extends Component {
       <div className={styles.App}>
         <Header />
           {this.state.route === '' && this.renderInstructions()}
-          {this.state.route === 'registry' && this.renderRegistry()}
+          {this.state.route === 'isp_donor_registry' && this.renderIspDonorRegistry()}
           {this.state.route === 'fund' && this.renderFund()}          
-          {this.state.route === 'school' && this.renderSchool()}
+          {this.state.route === 'school_registry' && this.renderSchoolRegistry()}
           {this.state.route === 'school_connectivity' && this.renderSchoolConnectivity()}
         <Footer />
       </div>
