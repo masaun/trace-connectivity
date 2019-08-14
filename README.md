@@ -1,15 +1,23 @@
-## Setup / Local environment
+# Trace Connectivity
 
+***
+
+##【Setup】
 ### Setup private network by using Ganache
 1. Download Ganache from link below
-https://www.trufflesuite.com/ganache
+https://www.trufflesuite.com/ganache  
 
 
-2. Execute Ganache 
+2. Execute Ganache   
+
+&nbsp;
+
 
 
 ### Setup wallet by using Metamask
-1. Download MetaMask
+1. Add MetaMask to browser (Chrome or FireFox or Opera or Brave)    
+https://metamask.io/  
+
 
 2. Adjust appropriate newwork below 
 ```
@@ -17,6 +25,7 @@ http://127.0.0.1:7545
 
 ```
 
+&nbsp;
 
 
 ### Setup backend
@@ -27,6 +36,7 @@ http://127.0.0.1:7545
 $ npm run migrate
 ```
 
+&nbsp;
 
 
 ### Setup frontend
@@ -35,3 +45,27 @@ $ npm run migrate
 
 $ npm run client
 ```
+
+2. Access to browser by using link 
+```
+http://127.0.0.1:3000
+```
+
+&nbsp;
+
+***
+
+
+## 【Introduction】
+### 
+1. Access to `http://127.0.0.1:3000/`
+
+
+
+
+2. Access to browser by using link 
+```
+http://127.0.0.1:3000/
+```
+
+
