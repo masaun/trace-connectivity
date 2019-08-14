@@ -266,15 +266,25 @@ var style = {
 // // // For tables
 // //
 //
-const thArray = ["ID", "Name", "Salary", "Country", "City"];
-const tdArray = [
-  ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-  ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-  ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-  ["4", "Philip Chaney", "$38,735", "Korea, South", "Overland Park"],
-  ["5", "Doris Greene", "$63,542", "Malawi", "Feldkirchen in Kärnten"],
-  ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
+const thArray = [
+  "Country name", 
+  "School name", 
+  "Assigned ISP address (currently)", 
+  "Stantdard value of upload speed", 
+  "Current value of upload speed",
+  "Stantdard value of download speed",
+  "Current value of download spee"
 ];
+const tdArray = [
+  ["Kyrgyzstan", "A school", "0x41f40d339d0839571f50622fa27e89232ca808a8", "3.0", "2.5", "3.0", "3.1"],
+];
+
+
+const thArray2 = ["ID", "Name", "Salary", "Country", "City"];
+const tdArray2 = [
+  ["", "", "", "", ""],
+];
+
 
 //
 // //
@@ -491,18 +501,10 @@ const iconsArray = [
 // // // // For dashboard's charts
 // //
 //
-// Data for Pie Chart
-var dataPie = {
-  labels: ["40%", "20%", "40%"],
-  series: [40, 20, 40]
-};
-var legendPie = {
-  names: ["Open", "Bounce", "Unsubscribe"],
-  types: ["info", "danger", "warning"]
-};
+
 
 // Data for Line Chart
-var dataSales = {
+var dataSales1 = {
   labels: [
     "9:00AM",
     "12:00AM",
@@ -514,14 +516,35 @@ var dataSales = {
     "6:00AM"
   ],
   series: [
-    [287, 385, 490, 492, 554, 586, 698, 695],
-    [67, 152, 143, 240, 287, 335, 435, 437],
-    [23, 113, 67, 108, 190, 239, 307, 308]
+    [],
+    [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
+    [3.1, 3.3, 3.0, 3.1, 3.2, 2.7, 3.1, 2.5]
   ]
 };
+
+
+var dataSales2 = {
+  labels: [
+    "9:00AM",
+    "12:00AM",
+    "3:00PM",
+    "6:00PM",
+    "9:00PM",
+    "12:00PM",
+    "3:00AM",
+    "6:00AM"
+  ],
+  series: [
+    [],
+    [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
+    [3.3, 3.5, 3.0, 2.9, 2.5, 3.0, 2.7, 3.1]
+  ]
+};
+
+
 var optionsSales = {
   low: 0,
-  high: 800,
+  high: 4.0,
   showArea: false,
   height: "245px",
   axisX: {
@@ -532,7 +555,7 @@ var optionsSales = {
   showPoint: true,
   fullWidth: true,
   chartPadding: {
-    right: 50
+    right: 0
   }
 };
 var responsiveSales = [
@@ -552,65 +575,17 @@ var legendSales = {
   types: ["info", "danger", "warning"]
 };
 
-// Data for Bar Chart
-var dataBar = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ],
-  series: [
-    [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-    [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
-  ]
-};
-var optionsBar = {
-  seriesBarDistance: 10,
-  axisX: {
-    showGrid: false
-  },
-  height: "245px"
-};
-var responsiveBar = [
-  [
-    "screen and (max-width: 640px)",
-    {
-      seriesBarDistance: 5,
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return value[0];
-        }
-      }
-    }
-  ]
-];
-var legendBar = {
-  names: ["Tesla Model S", "BMW 5 Series"],
-  types: ["info", "danger"]
-};
 
 module.exports = {
   style, // For notifications (App container and Notifications view)
   thArray,
   tdArray, // For tables (TableList view)
+  thArray2,
+  tdArray2, // For tables (TableList view)
   iconsArray, // For icons (Icons view)
-  dataPie,
-  legendPie,
-  dataSales,
+  dataSales1,
+  dataSales2,
   optionsSales,
   responsiveSales,
   legendSales,
-  dataBar,
-  optionsBar,
-  responsiveBar,
-  legendBar // For charts (Dashboard view)
 };

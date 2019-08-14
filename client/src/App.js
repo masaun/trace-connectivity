@@ -409,7 +409,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>ISP Registry</h2>
@@ -452,7 +451,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <h1>Trace Connectivity Contract is good to Go!</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>Fund from donors</h2>
@@ -474,6 +472,26 @@ class App extends Component {
   }
 
   renderSchool() {
+    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
+
+    const dataUploadSpeed = [
+      { name: '8/7', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.3 },
+      { name: '8/8', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.5 },
+      { name: '8/9', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 },
+      { name: '8/10', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.1 },
+      { name: '8/11', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.7 },
+      { name: '8/12', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 }
+    ]
+
+    const dataDownloadSpeed = [
+      { name: '8/7', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.1 },
+      { name: '8/8', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.1 },
+      { name: '8/9', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/10', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.3 },
+      { name: '8/11', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/12', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.8 }
+    ]
+
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
@@ -482,7 +500,6 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.trace_connectivity && (
         <div className={styles.contracts}>
-          <h1>This page can register specific school</h1>
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>School Registry</h2>
@@ -505,48 +522,13 @@ class App extends Component {
               
               <Button onClick={this.sendSchoolRegister}>School Register</Button>
             </Card>
-          </div>
-        </div>
-      )}
-      </div>
-    );
-  }
 
-  renderSchoolConnectivity() {
-    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
+            <Card width={'400px'} bg="primary">
 
-    const dataUploadSpeed = [
-      { name: '8/7', uploadSpeedStandard: 10, uploadSpeedCurrently: 12 },
-      { name: '8/8', uploadSpeedStandard: 10, uploadSpeedCurrently: 13 },
-      { name: '8/9', uploadSpeedStandard: 10, uploadSpeedCurrently: 19 },
-      { name: '8/10', uploadSpeedStandard: 10, uploadSpeedCurrently: 11 },
-      { name: '8/11', uploadSpeedStandard: 10, uploadSpeedCurrently: 9 },
-      { name: '8/12', uploadSpeedStandard: 10, uploadSpeedCurrently: 22 }
-    ]
+              <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
 
-    const dataDownloadSpeed = [
-      { name: '8/7', downloadSpeedStandard: 15, downloadSpeedCurrently: 5 },
-      { name: '8/8', downloadSpeedStandard: 15, downloadSpeedCurrently: 3 },
-      { name: '8/9', downloadSpeedStandard: 15, downloadSpeedCurrently: 9 },
-      { name: '8/10', downloadSpeedStandard: 15, downloadSpeedCurrently: 10 },
-      { name: '8/11', downloadSpeedStandard: 15, downloadSpeedCurrently: 12 },
-      { name: '8/12', downloadSpeedStandard: 15, downloadSpeedCurrently: 13 }
-    ]
+              <hr />
 
-    return (
-      <div className={styles.wrapper}>
-      {!this.state.web3 && this.renderLoader()}
-      {this.state.web3 && !this.state.trace_connectivity && (
-        this.renderDeployCheck('trace_connectivity')
-      )}
-      {this.state.web3 && this.state.trace_connectivity && (
-        <div className={styles.contracts}>
-          <Card width={'350px'} bg="primary">
-            <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
-          </Card>
-
-          <div className={styles.widgets}>
-            <Card width={'350px'} bg="primary">
               <h2>School Id Search</h2>
               <Input type="text" value={this.state.valueOfSchoolId} onChange={this.handleInputSchoolId} />
 
@@ -585,7 +567,7 @@ class App extends Component {
               { downloadSpeedCurrently }
             </Card>
 
-            <Card width={'400px'} bg="primary">
+            <Card width={'750px'} bg="primary">
               <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
                 <LineChart data={dataUploadSpeed}>
                   <XAxis dataKey="name" />
@@ -594,6 +576,8 @@ class App extends Component {
                   <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
                 </LineChart>
               </ResponsiveContainer>
+
+              <br />
 
               <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
                 <LineChart data={dataDownloadSpeed}>
@@ -605,14 +589,122 @@ class App extends Component {
               </ResponsiveContainer>
             </Card>
           </div>
+        </div>
+      )}
+      </div>
+    );
+  }
 
-          <BrowserRouter>
-            <Switch>
-              <Route path="/admin" render={props => <AdminLayout {...props} />} />
-              <Redirect from="/" to="/admin/dashboard/connectivity" />
-            </Switch>
-          </BrowserRouter>
+  renderSchoolConnectivity() {
+    /*
+    const { accounts, trace_connectivity, uploadSpeedCurrently, downloadSpeedCurrently, realTimeDataList, schoolList, schoolId,schoolName, countryName, ispAddr, uploadSpeedStantdard, downloadSpeedStantdard } = this.state;
 
+    const dataUploadSpeed = [
+      { name: '8/7', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.3 },
+      { name: '8/8', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.5 },
+      { name: '8/9', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 },
+      { name: '8/10', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 3.1 },
+      { name: '8/11', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.7 },
+      { name: '8/12', uploadSpeedStandard: 3.0, uploadSpeedCurrently: 2.9 }
+    ]
+
+    const dataDownloadSpeed = [
+      { name: '8/7', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.1 },
+      { name: '8/8', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.1 },
+      { name: '8/9', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/10', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.3 },
+      { name: '8/11', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 3.2 },
+      { name: '8/12', downloadSpeedStandard: 3.0, downloadSpeedCurrently: 2.8 }
+    ]
+    */
+
+    return (
+      <div className={styles.wrapper}>
+      {!this.state.web3 && this.renderLoader()}
+      {this.state.web3 && !this.state.trace_connectivity && (
+        this.renderDeployCheck('trace_connectivity')
+      )}
+      {this.state.web3 && this.state.trace_connectivity && (
+        <div className={styles.contracts}>
+          <div className={styles.widgets}>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/admin" render={props => <AdminLayout {...props} />} />
+                <Redirect from="/" to="/admin/dashboard/connectivity" />
+              </Switch>
+            </BrowserRouter>
+
+            {/*
+            <Card width={'400px'} bg="primary">
+
+              <Button onClick={this.getRealTimeData}>Get Real-Time Data</Button>
+
+              <hr />
+
+              <h2>School Id Search</h2>
+              <Input type="text" value={this.state.valueOfSchoolId} onChange={this.handleInputSchoolId} />
+
+              <br />
+
+              <Button onClick={this.sendSchoolDetail}>Search School Detail</Button>
+
+              <span style={{ padding: "20px" }}></span>
+
+              <hr />
+
+              <h2>Status of specific school connectivity</h2>
+              <p>Country name</p>
+              { countryName }
+
+              <p>School name</p>
+              { schoolName }
+
+              <p>Assigned ISP address (currently)</p>
+              { ispAddr }
+
+              <hr />
+
+              <p>Stantdard value of upload speed</p>
+              { uploadSpeedStantdard }
+
+              <p>Current value of upload speed</p>
+              { uploadSpeedCurrently }
+
+              <hr />
+ 
+              <p>Stantdard value of download speed</p>
+              { downloadSpeedStantdard }
+
+              <p>Current value of download speed</p>
+              { downloadSpeedCurrently }
+            </Card>
+            */}
+
+            {/*
+            <Card width={'750px'} bg="primary">
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataUploadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="uploadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="uploadSpeedCurrently" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
+
+              <br />
+
+              <ResponsiveContainer width="80%" height="40%" minWidth={600} minHeight={400}>
+                <LineChart data={dataDownloadSpeed}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Line dataKey="downloadSpeedStandard" stroke="#FF0000" />
+                  <Line dataKey="downloadSpeedCurrently" stroke="#8884d8" />
+                </LineChart>
+              </ResponsiveContainer>
+            </Card>
+            */}
+
+          </div>
         </div>
       )}
       </div>

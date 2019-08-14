@@ -17,23 +17,22 @@
 */
 import React, { Component } from "react";
 import ChartistGraph from "react-chartist";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import { Card } from "../components/Card/Card.jsx";
 import { StatsCard } from "../components/StatsCard/StatsCard.jsx";
 import { Tasks } from "../components/Tasks/Tasks.jsx";
 import {
-  dataPie,
-  legendPie,
-  dataSales,
+  dataSales1,
+  dataSales2,
   optionsSales,
   responsiveSales,
   legendSales,
-  dataBar,
-  optionsBar,
-  responsiveBar,
-  legendBar
+  thArray, 
+  tdArray
 } from "../variables/Variables.jsx";
+
+
 
 class Dashboard extends Component {
   createLegend(json) {
@@ -51,55 +50,19 @@ class Dashboard extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
-            <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-server text-warning" />}
-                statsText="Capacity"
-                statsValue="105GB"
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now"
-              />
-            </Col>
-            <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-wallet text-success" />}
-                statsText="Revenue"
-                statsValue="$1,345"
-                statsIcon={<i className="fa fa-calendar-o" />}
-                statsIconText="Last day"
-              />
-            </Col>
-            <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
-                statsValue="23"
-                statsIcon={<i className="fa fa-clock-o" />}
-                statsIconText="In the last hour"
-              />
-            </Col>
-            <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Followers"
-                statsValue="+45"
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now"
-              />
-            </Col>
           </Row>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Users Behavior"
+                title="Upload Speed"
                 category="24 Hours performance"
                 stats="Updated 3 minutes ago"
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataSales}
+                      data={dataSales1}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}
@@ -111,56 +74,77 @@ class Dashboard extends Component {
                 }
               />
             </Col>
-            <Col md={4}>
+            <Col md={12}>
               <Card
-                statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
-                stats="Campaign sent 2 days ago"
+                statsIcon="fa fa-history"
+                id="chartHours"
+                title="Download Speed"
+                category="24 Hours performance"
+                stats="Updated 3 minutes ago"
                 content={
-                  <div
-                    id="chartPreferences"
-                    className="ct-chart ct-perfect-fourth"
-                  >
-                    <ChartistGraph data={dataPie} type="Pie" />
+                  <div className="ct-chart">
+                    <ChartistGraph
+                      data={dataSales2}
+                      type="Line"
+                      options={optionsSales}
+                      responsiveOptions={responsiveSales}
+                    />
                   </div>
                 }
                 legend={
-                  <div className="legend">{this.createLegend(legendPie)}</div>
+                  <div className="legend">{this.createLegend(legendSales)}</div>
                 }
               />
             </Col>
           </Row>
 
           <Row>
-            <Col md={6}>
+            <Col md={12}>
               <Card
-                id="chartActivity"
-                title="2014 Sales"
-                category="All products including Taxes"
-                stats="Data information certified"
-                statsIcon="fa fa-check"
+                title="Status of specific school connectivity"
+                category=""
+                stats="Updated 3 minutes ago"
+                statsIcon="fa fa-history"
                 content={
-                  <div className="ct-chart">
-                    <ChartistGraph
-                      data={dataBar}
-                      type="Bar"
-                      options={optionsBar}
-                      responsiveOptions={responsiveBar}
-                    />
+                  <div className="table-full-width">
+                    <Table striped hover>
+                      <thead>
+                        <tr>
+                          {
+                            thArray.map((prop, key) => {
+                              return (
+                                <th key={key}>{prop}</th>
+                              );
+                            })
+                          }
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          tdArray.map((prop,key) => {
+                            return (
+                              <tr key={key}>{
+                                prop.map((prop,key)=> {
+                                  return (
+                                    <td key={key}>{prop}</td>
+                                  );
+                                })
+                              }</tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </Table>
                   </div>
-                }
-                legend={
-                  <div className="legend">{this.createLegend(legendBar)}</div>
                 }
               />
             </Col>
 
-            <Col md={6}>
+            <Col md={12}>
               <Card
-                title="Tasks"
-                category="Backend development"
-                stats="Updated 3 minutes ago"
+                title="Others"
+                category=""
+                stats=""
                 statsIcon="fa fa-history"
                 content={
                   <div className="table-full-width">
