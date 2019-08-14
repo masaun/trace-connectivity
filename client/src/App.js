@@ -546,7 +546,7 @@ class App extends Component {
               <Switch>
                 <Route path="/admin" render={props => <AdminLayout {...props} />} />
                 <Redirect from="/" to="/admin/dashboard/connectivity" />
-              </Switch>   
+              </Switch>
             </BrowserRouter>
 
             <Card width={'400px'} bg="primary">

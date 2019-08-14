@@ -266,15 +266,25 @@ var style = {
 // // // For tables
 // //
 //
-const thArray = ["ID", "Name", "Salary", "Country", "City"];
-const tdArray = [
-  ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-  ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-  ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-  ["4", "Philip Chaney", "$38,735", "Korea, South", "Overland Park"],
-  ["5", "Doris Greene", "$63,542", "Malawi", "Feldkirchen in Kärnten"],
-  ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
+const thArray = [
+  "Country name", 
+  "School name", 
+  "Assigned ISP address (currently)", 
+  "Stantdard value of upload speed", 
+  "Current value of upload speed",
+  "Stantdard value of download speed",
+  "Current value of download spee"
 ];
+const tdArray = [
+  ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout", "$36,738", "$36,738"]
+];
+
+
+const thArray2 = ["ID", "Name", "Salary", "Country", "City"];
+const tdArray2 = [
+  ["", "", "", "", ""],
+];
+
 
 //
 // //
@@ -570,6 +580,8 @@ module.exports = {
   style, // For notifications (App container and Notifications view)
   thArray,
   tdArray, // For tables (TableList view)
+  thArray2,
+  tdArray2, // For tables (TableList view)
   iconsArray, // For icons (Icons view)
   dataSales1,
   dataSales2,
